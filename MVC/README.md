@@ -1,0 +1,2 @@
+- Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
+- Mettre à jours les paquets
