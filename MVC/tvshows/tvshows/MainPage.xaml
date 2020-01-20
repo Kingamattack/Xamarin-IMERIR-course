@@ -3,6 +3,7 @@
     x:Class="tvshows.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:circleImage="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels"
@@ -44,14 +45,21 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.3*" />
-                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Image
+                            <circleImage:CircleImage
+                                Margin="10,0"
                                 Aspect="AspectFill"
+                                BorderColor="Red"
+                                BorderThickness="1"
+                                HeightRequest="80"
+                                HorizontalOptions="CenterAndExpand"
                                 Source="{Binding Image.Original}"
-                                VerticalOptions="CenterAndExpand" />
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="80" />
                             <!--
                                 Add Margin to prevent bug on CollectionView
                             -->
@@ -72,6 +80,7 @@
                                 <CollectionView
                                     Grid.Column="1"
                                     ItemsSource="{Binding Genres}"
+                                    SelectionMode="None"
                                     VerticalOptions="CenterAndExpand">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
@@ -85,7 +94,7 @@
                                                 <Frame
                                                     Padding="0"
                                                     BackgroundColor="Red"
-                                                    HasShadow="True"
+                                                    HasShadow="False"
                                                     IsClippedToBounds="True">
                                                     <Label
                                                         Padding="5"
@@ -101,6 +110,11 @@
                                     </CollectionView.ItemsLayout>
                                 </CollectionView>
                             </StackLayout>
+                            <Image
+                                Grid.Column="2"
+                                Margin="0,0,20,0"
+                                HorizontalOptions="End"
+                                Source="ic_star" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
