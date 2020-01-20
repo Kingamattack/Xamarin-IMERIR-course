@@ -1,14 +1,24 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace tvshows
 {
-    public partial class App : Application
+    public partial class App : Xamarin.Forms.Application
     {
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            var navigationPage = new Xamarin.Forms.NavigationPage(new MainPage())
+            {
+                BarTextColor = Color.White,
+                BackgroundColor = Color.Red
+            };
+
+            navigationPage.On<iOS>().SetPrefersLargeTitles(true);
+
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

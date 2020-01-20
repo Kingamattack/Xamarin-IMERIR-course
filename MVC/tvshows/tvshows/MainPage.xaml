@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels"
     Title="Ma page"
+    BackgroundColor="White"
     mc:Ignorable="d">
 
     <!--  ViewModel  -->
@@ -68,7 +69,10 @@
                                 Margin="0,10"
                                 Orientation="Vertical"
                                 VerticalOptions="CenterAndExpand">
-                                <Label Grid.Column="1" Text="{Binding Name}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Name}"
+                                    TextColor="Black" />
                                 <Label
                                     Grid.Column="1"
                                     Text="{Binding Runtime, StringFormat='{0} episodes'}"
