@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,58 +17,42 @@ namespace tvshows
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<string> Values { get; set; } = new ObservableCollection<string>();
-        
-
-        private readonly List<string> movies = new List<string>
-        {
-            "Avengers",
-            "Forest Gump",
-            "Spiderman",
-            "Superman",
-            "Black Panther",
-            "Venom",
-            "Iron man",
-            "Captain America",
-            "Dr. Strange",
-            "Thor",
-            "Hulk",
-            "She Hulk",
-            "Gardiens"
-        };
+        public ObservableCollection<Show> Shows { get; set; } = new ObservableCollection<Show>();
 
         public MainPage()
         {
             InitializeComponent();
-
-            BindingContext = this;
-        }
-
-        async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var searchBar = (SearchBar)sender;
-
-            if(searchBar.Text.Length >= 3)
-            {
-                await GetData(searchBar.Text);
-            }
         }
 
         private async Task GetData(string query)
         {
-            var httpClient = new HttpClient();
+            List<Show> shows = new List<Show>();
 
-            var response = await httpClient.GetAsync($"http://api.tvmaze.com/search/shows?q={query}");
-
-            if(response.IsSuccessStatusCode)
+            try 
             {
-                string data = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine($"Value: {data}");
+                var httpClient = new HttpClient();
 
-                var list = JsonConvert.DeserializeObject<List<JsonShow>>(data);
+                var response = await httpClient.GetAsync($"http://api.tvmaze.com/search/shows?q={query}");
 
-                var show = list[0];
-            }            
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Value: {data}");
+
+                    var list = JsonConvert.DeserializeObject<List<JsonShow>>(data);
+
+                    foreach (var item in list)
+                    {
+                        Shows.Add(item.Show);
+                    }
+
+                    //Shows = new ObservableCollection<Show>(shows);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

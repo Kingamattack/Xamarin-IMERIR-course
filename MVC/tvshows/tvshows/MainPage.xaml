@@ -1,38 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="tvshows.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    x:Class="tvshows.MainPage"    
-    Title="Ma page">
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels"
+    Title="Ma page"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <SearchBar
+            x:Name="searchBar"
             Placeholder="Rechercher..."
-            TextChanged="SearchBar_TextChanged"/>
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+
         <ListView
             Grid.Row="1"
-            ItemsSource="{Binding Values}">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>mono</x:String>
-                    <x:String>monodroid</x:String>
-                    <x:String>monotouch</x:String>
-                    <x:String>monorail</x:String>
-                    <x:String>monodevelop</x:String>
-                    <x:String>monotone</x:String>
-                    <x:String>monopoly</x:String>
-                    <x:String>monomodal</x:String>
-                    <x:String>mononucleosis</x:String>
-                  </x:Array>
-            </d:ListView.ItemsSource>
+            HasUnevenRows="False"
+            ItemsSource="{Binding Shows}"
+            RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Image
+                                Grid.RowSpan="2"
+                                Aspect="AspectFill"
+                                Source="{Binding Image.Original}"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </ContentPage>

@@ -12,6 +12,7 @@ namespace tvshows
         public string Url { get; set; }
         public string Name { get; set; }
         public string Language { get; set; }
+        public Image Image { get; set; }
         public List<string> Genres { get; set; }
     }
 
@@ -19,5 +20,11 @@ namespace tvshows
     {
         public double Score { get; set; }
         public Show Show { get; set; }
+    }
+
+    public class Image
+    {
+        public string Medium { get; set; }
+        public string Original { get; set; }
     }
 }
