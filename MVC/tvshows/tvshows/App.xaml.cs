@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using tvshows.Views;
+
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 

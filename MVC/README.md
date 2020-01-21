@@ -71,5 +71,6 @@ ListView
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/listview/
 (Don't let listview to Auto in Grid if you set RowHeight)
 
+CollectionView
 
 

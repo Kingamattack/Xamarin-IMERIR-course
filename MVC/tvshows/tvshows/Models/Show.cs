@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace tvshows
+namespace tvshows.Models
 {
     public class Show
     {
