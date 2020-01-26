@@ -24,10 +24,7 @@ namespace tvshows
 
             navigationService.Initialize(navPage);
 
-            // The root page of your application
             MainPage = navPage;
-
-            //MainPage = new HomePage();
         }
 
         protected override void OnStart()

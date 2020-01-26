@@ -29,8 +29,9 @@
         </ScrollView>
         <Button
             BackgroundColor="{StaticResource ThemeColor}"
+            Command="{Binding SaveToCollectionCommand}"
             FontSize="20"
-            Text="Ajouter aux favoris"
+            Text="{Binding ButtonText}"
             TextColor="White"
             VerticalOptions="EndAndExpand" />
     </Grid>

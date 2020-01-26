@@ -133,3 +133,18 @@ Ajout du loader pour chargement des données
 	VerticalOptions="CenterAndExpand"
 	Color="{StaticResource ThemeColor}" />
 ```
+
+
+La comparaison de Show dans la couche service ne marche pas
+public void DeleteItem(Show show)
+        {
+            var deletedShow = shows.FirstOrDefault(s => s.Id == show.Id);
+            int index = shows.IndexOf(deletedShow);
+            shows.RemoveAt(index);
+
+            Save();
+        } 		
+xxxx
+
+
+xwx
