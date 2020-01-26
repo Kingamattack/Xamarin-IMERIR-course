@@ -1,14 +1,33 @@
-﻿using tvshows.Views;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+
+using tvshows.Navigation;
+using tvshows.Views;
+
+using Xamarin.Forms;
 
 namespace tvshows
 {
-    public partial class App : Xamarin.Forms.Application
+    public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
 
-            MainPage = new HomePage();
+            var navigationService = new NavigationService();
+            navigationService.Configure("Details", typeof(DetailsPage));
+            navigationService.Configure("Search", typeof(SearchPage));
+
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
+            var navPage = new NavigationPage(new HomePage());
+
+            navigationService.Initialize(navPage);
+
+            // The root page of your application
+            MainPage = navPage;
+
+            //MainPage = new HomePage();
         }
 
         protected override void OnStart()

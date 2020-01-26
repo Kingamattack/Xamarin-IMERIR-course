@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels"
     Title="Recherche"
-    BackgroundColor="White"
     mc:Ignorable="d">
 
     <!--  ViewModel  -->
@@ -40,7 +39,8 @@
             Grid.Row="1"
             HasUnevenRows="False"
             ItemsSource="{Binding Shows}"
-            RowHeight="100">
+            RowHeight="100"
+            SelectedItem="{Binding SelectedShow, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -54,8 +54,8 @@
                             <circleImage:CircleImage
                                 Margin="10,0"
                                 Aspect="AspectFill"
-                                BorderColor="Red"
-                                BorderThickness="1"
+                                BorderColor="{StaticResource ThemeColor}"
+                                BorderThickness="3"
                                 HeightRequest="80"
                                 HorizontalOptions="CenterAndExpand"
                                 Source="{Binding Image.Original}"
@@ -97,7 +97,7 @@
                                                 -->
                                                 <Frame
                                                     Padding="0"
-                                                    BackgroundColor="Red"
+                                                    BackgroundColor="{StaticResource ThemeColor}"
                                                     HasShadow="False"
                                                     IsClippedToBounds="True">
                                                     <Label
@@ -124,5 +124,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
+            Color="{StaticResource ThemeColor}" />
     </Grid>
 </ContentPage>

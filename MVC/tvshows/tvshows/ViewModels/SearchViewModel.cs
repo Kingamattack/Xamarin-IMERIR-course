@@ -3,12 +3,15 @@
 // Date: 20/1/2020
 
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 
 using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -35,15 +38,38 @@ namespace tvshows.ViewModels
             set => Set(ref shows, value);
         }
 
-        public ICommand SearchCommand { get; private set; }
+        private Show selectedShow;
+        public Show SelectedShow
+        {
+            get => selectedShow;
+            set
+            {
+                if(value != null)
+                {
+                    Set(ref selectedShow, value);
 
-        private List<JsonShow> jsonShows;
+                    navigationService.NavigateTo("Details", selectedShow);
+                }
+            }
+        }
+
+        private bool isBusy;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => Set(ref isBusy, value);
+        }
+
+        private readonly INavigationService navigationService;
+
+        public ICommand SearchCommand { get; private set; }
 
         public SearchViewModel()
         {
-            jsonShows = new List<JsonShow>();
+            IsBusy = false;
             Text = string.Empty;
             Shows = new ObservableCollection<Show>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
             SearchCommand = new Command<string>(async (string query) => await Search(query));
         }
 
@@ -51,9 +77,11 @@ namespace tvshows.ViewModels
         {
             try
             {
-                if(query?.Length >= 3)
+                IsBusy = true;
+
+                if (query?.Length >= 3)
                 {
-                    jsonShows.Clear();
+                    var jsonShows = new List<JsonShow>();
                     var httpClient = new HttpClient();
 
                     var response = await httpClient.GetAsync($"http://api.tvmaze.com/search/shows?q={query}");
@@ -75,9 +103,13 @@ namespace tvshows.ViewModels
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Debug.WriteLine($"{nameof(SearchViewModel)}: {e.StackTrace}");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

@@ -12,7 +12,8 @@ namespace tvshows.Models
         public string Url { get; set; }
         public string Name { get; set; }
         public string Language { get; set; }
-        public int Runtime { get; set; }
+        public int? Runtime { get; set; }
+        public string Summary { get; set; }
         public Image Image { get; set; }
         public List<string> Genres { get; set; }
     }

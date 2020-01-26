@@ -74,3 +74,62 @@ https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/listview/
 CollectionView
 
 
+
+
+Colors
+
+Create a Theme folder in PCL project
+Create a New File (ContentPage XAML ou ContentView XAML)
+Effacer le xaml.cs
+Et copier ce contenu
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="RovaniemoveColor">#CB3416</Color>
+</ResourceDictionary>
+
+
+Dans le App.xaml, remplacer <Application.Resources/> par 
+<Application.Resources>
+        <ResourceDictionary Source="Themes/Colors.xaml" />
+    </Application.Resources>
+
+
+
+Pour avoir un titre sur les tab, ne pas oublier d'ajouter une navigation page
+
+Bonus: Ajouter LArge title sur iOS
+
+
+Pour selection -> Ajouter lib behaviros a PCL (uniquement)
+
+
+SearchBar command 
+<SearchBar
+            x:Name="searchBar"
+            Placeholder="Rechercher..."
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+			
+			Do not forget name
+
+
+Behaviors -> Select item
+https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/app-fundamentals/behaviors/reusable/event-to-command-behavior
+
+Runtime is nullabl
+
+android:TabbedPage.ToolbarPlacement="Bottom"
+
+Ajout du loader pour chargement des données
+```
+<ActivityIndicator
+	Grid.Row="1"
+	HorizontalOptions="CenterAndExpand"
+	IsRunning="{Binding IsBusy}"
+	IsVisible="{Binding IsBusy}"
+	VerticalOptions="CenterAndExpand"
+	Color="{StaticResource ThemeColor}" />
+```
