@@ -22,4 +22,15 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MyCollectionPage.xaml.cs">
+      <DependentUpon>MyCollectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

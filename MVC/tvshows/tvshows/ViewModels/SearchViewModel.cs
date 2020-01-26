@@ -1,4 +1,4 @@
-﻿// File: MainViewModel.cs
+﻿// File: SearchViewModel.cs
 // Author: jordy
 // Date: 20/1/2020
 
@@ -13,11 +13,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using tvshows.Models;
+
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class SearchViewModel : ViewModelBase
     {
         private string text;
         public string Text
@@ -37,7 +39,7 @@ namespace tvshows.ViewModels
 
         private List<JsonShow> jsonShows;
 
-        public MainViewModel()
+        public SearchViewModel()
         {
             jsonShows = new List<JsonShow>();
             Text = string.Empty;

@@ -1,9 +1,5 @@
 ﻿using tvshows.Views;
 
-using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-
 namespace tvshows
 {
     public partial class App : Xamarin.Forms.Application
@@ -12,15 +8,7 @@ namespace tvshows
         {
             InitializeComponent();
 
-            var navigationPage = new Xamarin.Forms.NavigationPage(new MainPage())
-            {
-                BarTextColor = Color.White,
-                BackgroundColor = Color.Red
-            };
-
-            navigationPage.On<iOS>().SetPrefersLargeTitles(true);
-
-            MainPage = navigationPage;
+            MainPage = new HomePage();
         }
 
         protected override void OnStart()
