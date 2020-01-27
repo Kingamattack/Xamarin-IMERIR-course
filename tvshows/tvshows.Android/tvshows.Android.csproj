@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\tvshows\tvshows.csproj">
-      <Project>{8631E997-BEAF-4F51-8CFF-D3F2DE4EEE56}</Project>
+      <Project>{C688988A-ABE9-4D34-84E6-937418F9C30F}</Project>
       <Name>tvshows</Name>
     </ProjectReference>
   </ItemGroup>

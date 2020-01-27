@@ -4,7 +4,43 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels"
     Title="Ma collection"
     ios:NavigationPage.PrefersLargeTitles="True">
-    <ContentPage.Content />
+
+    <ContentPage.BindingContext>
+        <viewModels:MyCollectionViewModel />
+    </ContentPage.BindingContext>
+
+    <RefreshView
+        Margin="10"
+        Command="{Binding GetShowsCommand}"
+        IsRefreshing="{Binding IsBusy}"
+        RefreshColor="{StaticResource ThemeColor}">
+        <CollectionView ItemsSource="{Binding Shows}">
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Vous n'avez pas de séries dans votre collection"
+                        VerticalOptions="CenterAndExpand" />
+                </Grid>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical">
+                        <Image Aspect="AspectFit" Source="{Binding Image.Original}" />
+                        <Label HorizontalOptions="Center" Text="{Binding Name}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="20"
+                    Orientation="Vertical"
+                    Span="4"
+                    VerticalItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>
