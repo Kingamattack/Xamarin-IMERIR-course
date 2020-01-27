@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:circleImage="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels"
+    Title="Recherche"
+    mc:Ignorable="d">
+
+    <!--  ViewModel  -->
+    <ContentPage.BindingContext>
+        <viewModels:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <!--
+        Grid with 2 rows
+        Set the second row height to * in order to avoid
+        ListView to display empty cells
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--
+            SearchBar with SearchCommand and Text as parameter
+        -->
+        <SearchBar
+            x:Name="searchBar"
+            Placeholder="Rechercher..."
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+
+        <ListView
+            Grid.Row="1"
+            HasUnevenRows="False"
+            ItemsSource="{Binding Shows}"
+            RowHeight="100"
+            SelectedItem="{Binding SelectedShow, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <circleImage:CircleImage
+                                Margin="10,0"
+                                Aspect="AspectFill"
+                                BorderColor="{StaticResource ThemeColor}"
+                                BorderThickness="3"
+                                HeightRequest="80"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="{Binding Image.Original}"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="80" />
+                            <!--
+                                Add Margin to prevent bug on CollectionView
+                            -->
+                            <StackLayout
+                                Grid.Column="1"
+                                Margin="0,10"
+                                Orientation="Vertical"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Name}"
+                                    TextColor="Black" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Runtime, StringFormat='{0} episodes'}"
+                                    TextColor="Gray" />
+                                <!--
+                                    CollectionView that displays categories for each Show
+                                    Shouldn't be scrollable.
+                                -->
+                                <CollectionView
+                                    Grid.Column="1"
+                                    ItemsSource="{Binding Genres}"
+                                    SelectionMode="None"
+                                    VerticalOptions="CenterAndExpand">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <!--
+                                                    Don't forget to set paddng to 0
+                                                -->
+                                                <Frame
+                                                    Padding="0"
+                                                    BackgroundColor="{StaticResource ThemeColor}"
+                                                    HasShadow="False"
+                                                    IsClippedToBounds="True">
+                                                    <Label
+                                                        Padding="5"
+                                                        FontAttributes="Bold"
+                                                        Text="{Binding .}"
+                                                        TextColor="White" />
+                                                </Frame>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                </CollectionView>
+                            </StackLayout>
+                            <Image
+                                Grid.Column="2"
+                                Margin="0,0,20,0"
+                                HorizontalOptions="End"
+                                Source="ic_star" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
+            Color="{StaticResource ThemeColor}" />
+    </Grid>
+</ContentPage>

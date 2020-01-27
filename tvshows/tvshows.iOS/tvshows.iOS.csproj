@@ -112,6 +112,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_star.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_star.imageset\ic_star%401x-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_star.imageset\ic_star%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_star.imageset\ic_star%403x-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -122,8 +126,14 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991477" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
+      <Version>3.0.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLightLibsStd10">
+      <Version>5.4.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -131,5 +141,8 @@
       <Project>{8631E997-BEAF-4F51-8CFF-D3F2DE4EEE56}</Project>
       <Name>tvshows</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\ic_star.imageset\" />
   </ItemGroup>
 </Project>
