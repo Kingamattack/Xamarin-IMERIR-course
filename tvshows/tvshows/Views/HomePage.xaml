@@ -8,12 +8,12 @@
 
     <NavigationPage Title="Recherche">
         <x:Arguments>
-            <pages:SearchPage Title="Ici titre" />
+            <pages:SearchPage />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Collection">
         <x:Arguments>
-            <pages:MyCollectionPage Title="Ici le 2" />
+            <pages:MyCollectionPage />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>
