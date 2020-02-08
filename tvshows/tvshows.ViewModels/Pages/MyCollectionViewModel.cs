@@ -42,12 +42,8 @@ namespace tvshows.ViewModels
             get => selectedShow;
             set
             {
-                if (value != null)
-                {
-                    Set(ref selectedShow, value);
-
-                    navigationService.NavigateTo("Details", selectedShow);
-                }
+                Set(ref selectedShow, value);
+                OpenShowDetails(value);
             }
         }
 
@@ -56,6 +52,7 @@ namespace tvshows.ViewModels
         #region Commands
 
         public ICommand GetShowsCommand { get; private set; }
+        public ICommand AppearingCommand { get; private set; }
         public ICommand OpenShowDetailsCommand { get; private set; }
 
         #endregion
@@ -73,18 +70,24 @@ namespace tvshows.ViewModels
             Shows = new ObservableCollection<Show>();
 
             GetShowsCommand = new Command(GetShows);
+            AppearingCommand = new Command(Appearing);
             OpenShowDetailsCommand = new Command<Show>(OpenShowDetails);
 
             favoriteService = DependencyService.Get<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
         }
 
-        private void OpenShowDetails(Show show)
+        #region Methods
+
+        private void Appearing()
         {
-            throw new NotImplementedException();
+            GetShows();
         }
 
-        #region Methods
+        private void OpenShowDetails(Show show)
+        {
+            navigationService.NavigateTo("Details", show);
+        }
 
         private void GetShows()
         {
