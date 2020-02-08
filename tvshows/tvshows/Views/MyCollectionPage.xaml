@@ -3,10 +3,8 @@
     x:Class="tvshows.Views.MyCollectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels"
-    Title="Ma collection"
-    ios:NavigationPage.PrefersLargeTitles="True">
+    Title="Ma collection">
 
     <ContentPage.BindingContext>
         <viewModels:MyCollectionViewModel />

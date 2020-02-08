@@ -13,7 +13,7 @@ using Xamarin.Essentials;
 
 namespace tvshows.Services
 {
-    public class FavoriteService
+    public class FavoriteService : IFavoriteService
     {
         private readonly List<Show> shows;
 

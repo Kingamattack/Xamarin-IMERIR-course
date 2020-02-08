@@ -18,6 +18,8 @@ namespace tvshows.ViewModels
 {
     public class MyCollectionViewModel : ViewModelBase
     {
+        #region Properties
+
         private ObservableCollection<Show> shows;
         public ObservableCollection<Show> Shows
         {
@@ -32,9 +34,30 @@ namespace tvshows.ViewModels
             set => Set(ref isBusy, value);
         }
 
-        public ICommand GetShowsCommand => new Command(GetShows);
+        #endregion
 
-        private readonly FavoriteService favoriteService;
+        #region Commands
+
+        public ICommand GetShowsCommand { get; private set; }
+
+        #endregion
+
+        #region Services
+
+        private readonly IFavoriteService favoriteService;
+
+        #endregion        
+
+        public MyCollectionViewModel()
+        {
+            IsBusy = false;
+            Shows = new ObservableCollection<Show>();
+
+            GetShowsCommand = new Command(GetShows);
+            favoriteService = DependencyService.Get<IFavoriteService>();
+        }
+
+        #region Methods
 
         private void GetShows()
         {
@@ -56,12 +79,6 @@ namespace tvshows.ViewModels
             }
         }
 
-        public MyCollectionViewModel()
-        {
-            IsBusy = false;
-            Shows = new ObservableCollection<Show>();
-
-            favoriteService = new FavoriteService();
-        }
+        #endregion
     }
 }

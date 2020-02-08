@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Views;
 
 using tvshows.Navigation;
+using tvshows.Services;
 using tvshows.Views;
 
 using Xamarin.Forms;
@@ -20,11 +21,13 @@ namespace tvshows
 
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
-            var navPage = new NavigationPage(new HomePage());
+            DependencyService.Register<IFavoriteService, FavoriteService>();
 
-            navigationService.Initialize(navPage);
+            var navigationPage = new NavigationPage(new HomePage());
 
-            MainPage = navPage;
+            navigationService.Initialize(navigationPage);
+
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

@@ -64,11 +64,11 @@ namespace tvshows.ViewModels
 
         public ICommand SaveToCollectionCommand => new Command(AddOrRemoveToCollection);
 
-        private readonly FavoriteService favoriteService;
+        private readonly IFavoriteService favoriteService;
 
         public DetailViewModel()
         {
-            favoriteService = new FavoriteService();
+            favoriteService = DependencyService.Get<IFavoriteService>();
         }
         
         private void AddOrRemoveToCollection()

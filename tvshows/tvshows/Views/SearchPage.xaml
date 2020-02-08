@@ -7,7 +7,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels"
-    Title="Recherche"
+    Title="lol"
     mc:Ignorable="d">
 
     <!--  ViewModel  -->
