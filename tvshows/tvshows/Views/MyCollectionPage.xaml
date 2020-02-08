@@ -15,7 +15,10 @@
         Command="{Binding GetShowsCommand}"
         IsRefreshing="{Binding IsBusy}"
         RefreshColor="{StaticResource ThemeColor}">
-        <CollectionView ItemsSource="{Binding Shows}">
+        <CollectionView
+            ItemsSource="{Binding Shows}"
+            SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
+            SelectionMode="Single">
             <CollectionView.EmptyView>
                 <Grid>
                     <Label
