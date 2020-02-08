@@ -148,3 +148,12 @@ xxxx
 
 
 xwx
+
+Large title
+
+
+OnAppearing
+
+IoC -> DependencyService -> FavoriteService
+
+CollectionView aucune selection si SelectionMode not set to Single
