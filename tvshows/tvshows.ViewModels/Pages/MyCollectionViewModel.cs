@@ -7,8 +7,10 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -22,8 +24,8 @@ namespace tvshows.ViewModels
     {
         #region Properties
 
-        private ObservableCollection<Show> shows;
-        public ObservableCollection<Show> Shows
+        private ObservableCollection<Showgroup> shows;
+        public ObservableCollection<Showgroup> Shows
         {
             get => shows;
             set => Set(ref shows, value);
@@ -67,7 +69,7 @@ namespace tvshows.ViewModels
         public MyCollectionViewModel()
         {
             IsBusy = false;
-            Shows = new ObservableCollection<Show>();
+            Shows = new ObservableCollection<Showgroup>();
 
             GetShowsCommand = new Command(GetShows);
             AppearingCommand = new Command(Appearing);
@@ -97,7 +99,17 @@ namespace tvshows.ViewModels
 
                 var list = favoriteService.GetShows();
 
-                Shows = new ObservableCollection<Show>(list);
+                var group = list.GroupBy(l => l.Name.First());
+
+                List<Showgroup> groups = new List<Showgroup>();
+
+                foreach (var grp in group)
+                {
+                    var showGroup = new Showgroup(grp.Key.ToString(), grp.ToList());
+                    groups.Add(showGroup);
+                }
+
+                Shows = new ObservableCollection<Showgroup>(groups);
             }
             catch (Exception ex)
             {
@@ -110,5 +122,16 @@ namespace tvshows.ViewModels
         }
 
         #endregion
+    }
+}
+
+
+public class Showgroup : List<Show>
+{
+    public string Name { get; set; }
+
+    public Showgroup(string name, List<Show> shows) : base(shows)
+    {
+        Name = name;
     }
 }

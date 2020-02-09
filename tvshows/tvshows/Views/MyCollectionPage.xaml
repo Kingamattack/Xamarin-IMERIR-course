@@ -23,6 +23,8 @@
         IsRefreshing="{Binding IsBusy}"
         RefreshColor="{StaticResource ThemeColor}">
         <CollectionView
+            IsGrouped="True"
+            ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding Shows}"
             SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
             SelectionMode="Single">
@@ -37,18 +39,36 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Vertical">
-                        <Image Aspect="AspectFit" Source="{Binding Image.Original}" />
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Red"
+                            IsClippedToBounds="True">
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="150"
+                                Source="{Binding Image.Original}"
+                                WidthRequest="150" />
+                        </Frame>
                         <Label HorizontalOptions="Center" Text="{Binding Name}" />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{Binding Name}"
+                            TextColor="Gray" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.ItemsLayout>
-                <GridItemsLayout
-                    HorizontalItemSpacing="20"
-                    Orientation="Vertical"
-                    Span="4"
-                    VerticalItemSpacing="20" />
+                <GridItemsLayout Orientation="Vertical" Span="4" />
             </CollectionView.ItemsLayout>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        BackgroundColor="LightGray"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
         </CollectionView>
     </RefreshView>
 </ContentPage>

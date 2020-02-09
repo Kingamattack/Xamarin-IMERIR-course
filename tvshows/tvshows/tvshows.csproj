@@ -22,6 +22,7 @@
     <Folder Include="Views\" />
     <Folder Include="Themes\" />
     <Folder Include="Navigation\" />
+    <Folder Include="DataTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\HomePage.xaml.cs">

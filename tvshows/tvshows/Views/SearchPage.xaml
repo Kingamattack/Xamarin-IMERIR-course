@@ -119,6 +119,12 @@
                                 Margin="0,0,20,0"
                                 HorizontalOptions="End"
                                 Source="ic_star" />
+                            <!--<Image
+                                Grid.Column="2"
+                                Margin="0,0,20,0"
+                                IsVisible="{}"
+                                HorizontalOptions="End"
+                                Source="ic_star_filled" />-->
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
