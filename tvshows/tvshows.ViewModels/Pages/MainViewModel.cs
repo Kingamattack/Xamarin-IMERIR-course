@@ -20,7 +20,7 @@ using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
-    public class MyCollectionViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         #region Properties
 
@@ -45,9 +45,11 @@ namespace tvshows.ViewModels
             set
             {
                 Set(ref selectedShow, value);
-                OpenShowDetails(value);
+                OpenDetailsPage(value);
             }
         }
+
+        public bool IsAndroid => Device.RuntimePlatform == Device.Android;
 
         #endregion
 
@@ -56,6 +58,7 @@ namespace tvshows.ViewModels
         public ICommand GetShowsCommand { get; private set; }
         public ICommand AppearingCommand { get; private set; }
         public ICommand OpenShowDetailsCommand { get; private set; }
+        public ICommand OpenSearchCommand { get; private set; }
 
         #endregion
 
@@ -66,17 +69,23 @@ namespace tvshows.ViewModels
 
         #endregion        
 
-        public MyCollectionViewModel()
+        public MainViewModel()
         {
             IsBusy = false;
             Shows = new ObservableCollection<Showgroup>();
 
             GetShowsCommand = new Command(GetShows);
             AppearingCommand = new Command(Appearing);
-            OpenShowDetailsCommand = new Command<Show>(OpenShowDetails);
+            OpenSearchCommand = new Command(OpenSearchPage);
+            OpenShowDetailsCommand = new Command<Show>(OpenDetailsPage);
 
-            favoriteService = DependencyService.Get<IFavoriteService>();
+            favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+        }
+
+        private void OpenSearchPage()
+        {
+            navigationService.NavigateTo("Search");
         }
 
         #region Methods
@@ -86,7 +95,7 @@ namespace tvshows.ViewModels
             GetShows();
         }
 
-        private void OpenShowDetails(Show show)
+        private void OpenDetailsPage(Show show)
         {
             navigationService.NavigateTo("Details", show);
         }
@@ -113,7 +122,7 @@ namespace tvshows.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"{nameof(MyCollectionViewModel)}: {ex.StackTrace}");
+                Debug.WriteLine($"{nameof(MainViewModel)}: {ex.StackTrace}");
             }
             finally
             {

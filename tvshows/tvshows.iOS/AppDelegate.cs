@@ -2,6 +2,8 @@
 
 using ImageCircle.Forms.Plugin.iOS;
 
+using SuaveControls.FloatingActionButton.iOS.Renderers;
+
 using UIKit;
 
 namespace tvshows.iOS
@@ -22,6 +24,7 @@ namespace tvshows.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            //FloatingActionButtonRenderer.InitRenderer();
             ImageCircleRenderer.Init();
             LoadApplication(new App());
 

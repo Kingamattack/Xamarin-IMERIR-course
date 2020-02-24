@@ -120,6 +120,8 @@
     <ImageAsset Include="Assets.xcassets\ic_star_filled.imageset\ic_star_filled%401x.png" />
     <ImageAsset Include="Assets.xcassets\ic_star_filled.imageset\ic_star_filled%402x.png" />
     <ImageAsset Include="Assets.xcassets\ic_star_filled.imageset\ic_star_filled%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_plus.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_plus.imageset\ic_plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -131,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.4.0" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
     </PackageReference>
@@ -152,5 +154,6 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\ic_star.imageset\" />
     <Folder Include="Assets.xcassets\ic_star_filled.imageset\" />
+    <Folder Include="Assets.xcassets\ic_plus.imageset\" />
   </ItemGroup>
 </Project>

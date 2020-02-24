@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+    xmlns:fab="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    Title="Ma collection"
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="PapayaWhip">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding OpenSearchCommand}"
+            IconImageSource="ic_plus"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:InvokeCommandAction Command="{Binding AppearingCommand}" />
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <Grid Margin="10">
+        <RefreshView
+            Command="{Binding GetShowsCommand}"
+            IsRefreshing="{Binding IsBusy}"
+            RefreshColor="{StaticResource ThemeColor}">
+            <CollectionView
+                IsGrouped="True"
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsSource="{Binding Shows}"
+                SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
+                SelectionMode="Single"
+                VerticalScrollBarVisibility="Never">
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Vous n'avez pas de séries dans votre collection"
+                            VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Margin="0,10"
+                            Orientation="Vertical"
+                            Spacing="1">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="Red"
+                                CornerRadius="0"
+                                IsClippedToBounds="True">
+                                <Image
+                                    Aspect="Fill"
+                                    HeightRequest="150"
+                                    Source="{Binding Image.Original}"
+                                    WidthRequest="100" />
+                            </Frame>
+                            <Label
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                Text="{Binding Name}" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="{Binding Name}"
+                                TextColor="Gray" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="4" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            BackgroundColor="{StaticResource ThemeColor}"
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding Name}"
+                            TextColor="White" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <fab:FloatingActionButton
+            BackgroundColor="Blue"
+            ButtonColor="{StaticResource ThemeColor}"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            ImageSource="ic_plus"
+            IsVisible="{Binding IsAndroid}"
+            VerticalOptions="End"
+            WidthRequest="56" />
+    </Grid>
+</ContentPage>

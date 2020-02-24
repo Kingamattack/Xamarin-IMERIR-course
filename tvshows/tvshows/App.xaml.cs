@@ -18,12 +18,16 @@ namespace tvshows
             var navigationService = new NavigationService();
             navigationService.Configure("Details", typeof(DetailsPage));
             navigationService.Configure("Search", typeof(SearchPage));
+            navigationService.Configure("Main", typeof(MainPage));
 
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+            SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
 
-            DependencyService.Register<IFavoriteService, FavoriteService>();
-
-            var navigationPage = new NavigationPage(new HomePage());
+            var navigationPage = new NavigationPage(new MainPage())
+            {
+                BarTextColor = Color.White,
+                BarBackgroundColor = (Color)Current.Resources["ThemeColor"]
+            };
 
             navigationService.Initialize(navigationPage);
 
