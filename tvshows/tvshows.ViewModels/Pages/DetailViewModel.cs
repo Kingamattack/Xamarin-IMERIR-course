@@ -3,7 +3,7 @@
 // Date: 26/1/2020
 
 using GalaSoft.MvvmLight;
-
+using GalaSoft.MvvmLight.Ioc;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -68,7 +68,7 @@ namespace tvshows.ViewModels
 
         public DetailViewModel()
         {
-            favoriteService = DependencyService.Get<IFavoriteService>();
+            favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
         }
         
         private void AddOrRemoveToCollection()
