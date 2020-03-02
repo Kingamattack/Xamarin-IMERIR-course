@@ -83,7 +83,7 @@
                                 -->
                                 <CollectionView
                                     Grid.Column="1"
-                                    ItemsSource="{Binding Genres}"
+                                    ItemsSource="{Binding Show.Genres}"
                                     SelectionMode="None"
                                     VerticalOptions="CenterAndExpand">
                                     <CollectionView.ItemTemplate>

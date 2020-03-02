@@ -11,28 +11,57 @@
         <viewModels:DetailViewModel />
     </ContentPage.BindingContext>
 
-    <Grid>
-        <ScrollView>
-            <StackLayout Orientation="Vertical">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid BackgroundColor="Lime" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
                 <Image
-                    Aspect="AspectFill"
-                    HeightRequest="300"
-                    Source="{Binding Show.Image.Original}" />
-                <Label
-                    Grid.Row="1"
-                    Margin="10"
-                    FontSize="20"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Summary}"
-                    TextType="Text" />
-            </StackLayout>
-        </ScrollView>
-        <Button
+                    Aspect="AspectFit"
+                    BackgroundColor="Blue"
+                    Source="{Binding Show.Image.Original}"
+                    VerticalOptions="FillAndExpand" />
+
+                <StackLayout
+                    Grid.Column="1"
+                    BackgroundColor="Yellow"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+                    <Label FontSize="20" Text="1ere diffusion" />
+
+                    <Label FontSize="20" Text="Nombre d'épisode" />
+
+                    <Label FontSize="20" Text="Réalisateur" />
+
+                    <Label FontSize="20" Text="Note" />
+                </StackLayout>
+            </Grid>
+
+            <Label
+                Grid.Row="1"
+                BackgroundColor="Yellow"
+                Text="{Binding Summary}"
+                TextType="Text"
+                VerticalOptions="Start" />
+        </Grid>
+    </ScrollView>
+
+
+    <!--<Grid>
+                <Button
             BackgroundColor="{StaticResource ThemeColor}"
             Command="{Binding SaveToCollectionCommand}"
             FontSize="20"
             Text="{Binding ButtonText}"
             TextColor="White"
             VerticalOptions="EndAndExpand" />
-    </Grid>
+    </Grid>-->
 </ContentPage>

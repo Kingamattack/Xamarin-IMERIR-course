@@ -4,6 +4,8 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -38,6 +40,8 @@ namespace tvshows.ViewModels
                 }
             }
         }
+
+        public List<string> Genres => Show?.Genres;
 
         private Show show;
         public Show Show

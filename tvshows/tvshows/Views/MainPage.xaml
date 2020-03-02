@@ -8,8 +8,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     Title="Ma collection"
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="PapayaWhip">
+    ios:Page.UseSafeArea="True">
 
     <ContentPage.BindingContext>
         <viewModels:MainViewModel />
@@ -87,11 +86,10 @@
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Label
-                            BackgroundColor="{StaticResource ThemeColor}"
                             FontAttributes="Bold"
                             FontSize="Large"
                             Text="{Binding Name}"
-                            TextColor="White" />
+                            TextColor="{StaticResource ThemeColor}" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
             </CollectionView>

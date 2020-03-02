@@ -106,9 +106,9 @@ namespace tvshows.ViewModels
             {
                 IsBusy = true;
 
-                var list = favoriteService.GetShows();
+                var shows = favoriteService.GetShows();
 
-                var group = list.GroupBy(l => l.Name.First());
+                var group = shows.GroupBy(l => l.Name.First());
 
                 List<Showgroup> groups = new List<Showgroup>();
 
