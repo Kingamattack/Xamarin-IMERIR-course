@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.WebsitePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels">
+    <ContentPage.BindingContext>
+        <viewModels:WebsiteViewModel />
+    </ContentPage.BindingContext>
+
+    <WebView Source="{Binding Url}" />
+</ContentPage>

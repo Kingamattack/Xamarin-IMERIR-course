@@ -4,8 +4,8 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -43,6 +43,19 @@ namespace tvshows.ViewModels
 
         public List<string> Genres => Show?.Genres;
 
+        public Color StatusColor
+        {
+            get
+            {
+                if (Show?.Status == "Ended")
+                    return Color.Red;
+
+                return Color.Green;
+            }
+        }
+
+        //public double Note => Show?.Rating.Average ?? 0.0;
+
         private Show show;
         public Show Show
         {
@@ -52,6 +65,9 @@ namespace tvshows.ViewModels
                 Set(ref show, value);
                 RaisePropertyChanged(nameof(Summary));
                 RaisePropertyChanged(nameof(ButtonText));
+                RaisePropertyChanged(nameof(StatusColor));
+                RaisePropertyChanged(nameof(Genres));
+                //RaisePropertyChanged(nameof(Note));
             }
         }
 
@@ -66,15 +82,26 @@ namespace tvshows.ViewModels
             }
         }
 
-        public ICommand SaveToCollectionCommand => new Command(AddOrRemoveToCollection);
+        public ICommand OpenWebsiteCommand { get; private set; }
+        public ICommand SaveToCollectionCommand { get; private set; }
 
         private readonly IFavoriteService favoriteService;
+        private readonly INavigationService navigationService;
 
         public DetailViewModel()
         {
+            OpenWebsiteCommand = new Command(OpenWebsite);
+            SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+
         }
-        
+
+        private void OpenWebsite()
+        {
+            navigationService.NavigateTo("Website");
+        }
+
         private void AddOrRemoveToCollection()
         {
             if(favoriteService.Exists(show))

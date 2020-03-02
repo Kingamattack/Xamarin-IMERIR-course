@@ -11,11 +11,20 @@
         <viewModels:DetailViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView VerticalScrollBarVisibility="Never">
-        <Grid Padding="10">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding OpenWebsiteCommand}"
+            IconImageSource="ic_web"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView Padding="10" VerticalScrollBarVisibility="Never">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid BackgroundColor="Lime" HorizontalOptions="FillAndExpand">
@@ -35,22 +44,53 @@
                     BackgroundColor="Yellow"
                     Orientation="Vertical"
                     VerticalOptions="FillAndExpand">
-                    <Label FontSize="20" Text="1ere diffusion" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="1ere diffusion" />
+                    <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
 
-                    <Label FontSize="20" Text="Nombre d'épisode" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Nombre d'épisode" />
+                    <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
 
-                    <Label FontSize="20" Text="Réalisateur" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Réalisateur" />
+                    <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="1ere diffusion" />
 
-                    <Label FontSize="20" Text="Note" />
+                    <Label FontAttributes="Bold" Text="Note" />
+                    <!--<Label Text="{Binding Note}" />-->
+
+                    <Label FontAttributes="Bold" Text="Status" />
+                    <StackLayout Orientation="Horizontal">
+                        <Frame
+                            BackgroundColor="{Binding StatusColor}"
+                            CornerRadius="5"
+                            IsClippedToBounds="True" />
+                        <Label Text="{Binding Show.Status}" VerticalOptions="Center" />
+                    </StackLayout>
                 </StackLayout>
             </Grid>
 
-            <Label
-                Grid.Row="1"
-                BackgroundColor="Yellow"
-                Text="{Binding Summary}"
-                TextType="Text"
-                VerticalOptions="Start" />
+            <StackLayout Grid.Row="2">
+                <Label
+                    FontSize="18"
+                    Text="Résumé"
+                    VerticalOptions="Start" />
+                <Label
+                    BackgroundColor="Yellow"
+                    Text="{Binding Summary}"
+                    TextType="Text"
+                    VerticalOptions="Start" />
+            </StackLayout>
         </Grid>
     </ScrollView>
 

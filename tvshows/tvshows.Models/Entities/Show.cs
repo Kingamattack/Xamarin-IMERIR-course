@@ -14,6 +14,9 @@ namespace tvshows.Models
         public string Language { get; set; }
         public int? Runtime { get; set; }
         public string Summary { get; set; }
+        public string Status { get; set; }
+        //public Rating? Rating { get; set; }
+        public string Premiered { get; set; }
         public Image Image { get; set; }
         public List<string> Genres { get; set; }
     }
@@ -28,5 +31,10 @@ namespace tvshows.Models
     {
         public string Medium { get; set; }
         public string Original { get; set; }
+    }
+
+    public class Rating
+    {
+        public double Average { get; set; }
     }
 }

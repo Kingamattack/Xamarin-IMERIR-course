@@ -122,6 +122,10 @@
     <ImageAsset Include="Assets.xcassets\ic_star_filled.imageset\ic_star_filled%403x.png" />
     <ImageAsset Include="Assets.xcassets\ic_plus.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_plus.imageset\ic_plus.png" />
+    <ImageAsset Include="Assets.xcassets\ic_web.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_web.imageset\ic_web%401x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_web.imageset\ic_web%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_web.imageset\ic_web%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -155,5 +159,6 @@
     <Folder Include="Assets.xcassets\ic_star.imageset\" />
     <Folder Include="Assets.xcassets\ic_star_filled.imageset\" />
     <Folder Include="Assets.xcassets\ic_plus.imageset\" />
+    <Folder Include="Assets.xcassets\ic_web.imageset\" />
   </ItemGroup>
 </Project>

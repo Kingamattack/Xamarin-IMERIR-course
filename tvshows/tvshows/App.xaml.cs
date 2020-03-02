@@ -19,6 +19,7 @@ namespace tvshows
             navigationService.Configure("Details", typeof(DetailsPage));
             navigationService.Configure("Search", typeof(SearchPage));
             navigationService.Configure("Main", typeof(MainPage));
+            navigationService.Configure("Website", typeof(WebsitePage));
 
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
             SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
