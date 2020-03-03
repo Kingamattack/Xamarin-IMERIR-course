@@ -2,7 +2,11 @@
 // Author: Jordy Kingama
 // Date: 12/1/2020
 
+using Newtonsoft.Json;
+
 using System.Collections.Generic;
+
+using tvshows.Models.Entities;
 
 namespace tvshows.Models
 {
@@ -15,26 +19,17 @@ namespace tvshows.Models
         public int? Runtime { get; set; }
         public string Summary { get; set; }
         public string Status { get; set; }
-        //public Rating? Rating { get; set; }
         public string Premiered { get; set; }
         public Image Image { get; set; }
         public List<string> Genres { get; set; }
+
+        [JsonProperty("_embedded")]
+        public Embedded Embedded { get; set; }
     }
 
-    public class JsonShow
+    public class Embedded
     {
-        public double Score { get; set; }
-        public Show Show { get; set; }
-    }
-
-    public class Image
-    {
-        public string Medium { get; set; }
-        public string Original { get; set; }
-    }
-
-    public class Rating
-    {
-        public double Average { get; set; }
-    }
+        [JsonProperty("cast")]
+        public List<Actor> Actors { get; set; }
+    }    
 }

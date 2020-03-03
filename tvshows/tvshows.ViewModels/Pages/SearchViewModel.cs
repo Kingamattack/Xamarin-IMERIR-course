@@ -17,7 +17,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
-
+using tvshows.Models.Entities;
+using tvshows.Services;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -61,6 +62,7 @@ namespace tvshows.ViewModels
         }
 
         private readonly INavigationService navigationService;
+        private readonly IShowService showService;
 
         public ICommand SearchCommand { get; private set; }
 

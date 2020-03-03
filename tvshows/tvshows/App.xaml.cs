@@ -23,6 +23,7 @@ namespace tvshows
 
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
             SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
+            SimpleIoc.Default.Register<IShowService, ShowService>();
 
             var navigationPage = new NavigationPage(new MainPage())
             {

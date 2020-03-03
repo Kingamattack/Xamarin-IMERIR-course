@@ -5,7 +5,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -41,8 +44,6 @@ namespace tvshows.ViewModels
             }
         }
 
-        public List<string> Genres => Show?.Genres;
-
         public Color StatusColor
         {
             get
@@ -54,7 +55,7 @@ namespace tvshows.ViewModels
             }
         }
 
-        //public double Note => Show?.Rating.Average ?? 0.0;
+        public List<Actor> Actors => show?.Embedded?.Actors;
 
         private Show show;
         public Show Show
@@ -64,37 +65,40 @@ namespace tvshows.ViewModels
             {
                 Set(ref show, value);
                 RaisePropertyChanged(nameof(Summary));
-                RaisePropertyChanged(nameof(ButtonText));
                 RaisePropertyChanged(nameof(StatusColor));
-                RaisePropertyChanged(nameof(Genres));
-                //RaisePropertyChanged(nameof(Note));
-            }
-        }
-
-        public string ButtonText
-        {
-            get
-            {
-                if (show == null)
-                    return "Ajouter aux favoris";
-
-                return favoriteService.Exists(show) ? "Retirer des favoris" : "Ajouter aux favoris";
+                RaisePropertyChanged(nameof(Actors));
             }
         }
 
         public ICommand OpenWebsiteCommand { get; private set; }
         public ICommand SaveToCollectionCommand { get; private set; }
+        public ICommand AppearingCommand { get; private set; }
 
         private readonly IFavoriteService favoriteService;
         private readonly INavigationService navigationService;
+        private readonly IShowService showService;
 
         public DetailViewModel()
         {
             OpenWebsiteCommand = new Command(OpenWebsite);
-            SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
+            //SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
+            AppearingCommand = new Command(async () => await Appearing());
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            showService = SimpleIoc.Default.GetInstance<IShowService>();
 
+        }
+
+        private async Task Appearing()
+        {
+            try
+            {
+                Show = await showService.GetShow(show.Id);
+            }
+            catch (Exception ex)
+            {
+
+            }            
         }
 
         private void OpenWebsite()
@@ -102,18 +106,18 @@ namespace tvshows.ViewModels
             navigationService.NavigateTo("Website");
         }
 
-        private void AddOrRemoveToCollection()
-        {
-            if(favoriteService.Exists(show))
-            {
-                favoriteService.DeleteItem(show);
-            }
-            else
-            {
-                favoriteService.AddItem(show);
-            }
+        //private void AddOrRemoveToCollection()
+        //{
+        //    if(favoriteService.Exists(show))
+        //    {
+        //        favoriteService.DeleteItem(show);
+        //    }
+        //    else
+        //    {
+        //        favoriteService.AddItem(show);
+        //    }
 
-            RaisePropertyChanged(nameof(ButtonText));
-        }
+        //    RaisePropertyChanged(nameof(ButtonText));
+        //}
     }    
 }
