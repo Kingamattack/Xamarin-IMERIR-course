@@ -32,6 +32,8 @@
                 <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid BackgroundColor="Lime" HorizontalOptions="FillAndExpand">
@@ -77,6 +79,7 @@
                 </StackLayout>
             </Grid>
 
+            <!--  Summary  -->
             <StackLayout Grid.Row="1">
                 <Label
                     FontSize="18"
@@ -88,10 +91,12 @@
                     TextType="Text"
                     VerticalOptions="Start" />
             </StackLayout>
+
             <!--  Casting  -->
             <CollectionView
                 Grid.Row="2"
                 Header="Casting"
+                HeightRequest="{Binding Actors.Count, Converter={StaticResource CollectionViewHeightConverter}}"
                 ItemsSource="{Binding Actors}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -111,6 +116,52 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <!--  Seasons  -->
+            <ListView
+                Grid.Row="3"
+                BackgroundColor="Blue"
+                Header="Saisons"
+                HeightRequest="{Binding Seasons.Count, Converter={StaticResource ListViewHeightConverter}}"
+                ItemsSource="{Binding Seasons}"
+                RowHeight="70"
+                SeparatorVisibility="None"
+                VerticalOptions="Start">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                Margin="0,5"
+                                Padding="10"
+                                BorderColor="Red"
+                                CornerRadius="5"
+                                HasShadow="True"
+                                IsClippedToBounds="True">
+                                <Grid VerticalOptions="CenterAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Number, StringFormat='Saison {0}'}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Text="{Binding EpisodeOrder, StringFormat='{0} épisodes'}" />
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button
+                Grid.Row="4"
+                Text="Coucou"
+                TextColor="Red" />
         </Grid>
     </ScrollView>
 </ContentPage>

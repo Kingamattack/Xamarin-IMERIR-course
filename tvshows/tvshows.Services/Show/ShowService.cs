@@ -34,13 +34,14 @@ namespace tvshows.Services
 
             try
             {
-                var response = await httpClient.GetAsync($"/shows/{id}?embed=cast");
+                var response = await httpClient.GetAsync($"/shows/{id}?embed[]=cast&embed[]=seasons");
 
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
 
                     show = JsonConvert.DeserializeObject<Show>(data);
+                    Debug.Write(data);
                 }
 
                 return show;

@@ -24,6 +24,7 @@
     <Folder Include="Themes\" />
     <Folder Include="Navigation\" />
     <Folder Include="DataTemplates\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\SearchPage.xaml.cs">

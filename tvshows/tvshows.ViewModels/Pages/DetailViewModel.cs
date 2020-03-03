@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
+using tvshows.Models.Entities;
 using tvshows.Services;
 
 using Xamarin.Forms;
@@ -57,6 +58,8 @@ namespace tvshows.ViewModels
 
         public List<Actor> Actors => show?.Embedded?.Actors;
 
+        public List<Season> Seasons => show?.Embedded?.Seasons;
+
         private Show show;
         public Show Show
         {
@@ -67,6 +70,7 @@ namespace tvshows.ViewModels
                 RaisePropertyChanged(nameof(Summary));
                 RaisePropertyChanged(nameof(StatusColor));
                 RaisePropertyChanged(nameof(Actors));
+                RaisePropertyChanged(nameof(Seasons));
             }
         }
 

@@ -31,5 +31,8 @@ namespace tvshows.Models
     {
         [JsonProperty("cast")]
         public List<Actor> Actors { get; set; }
+
+        [JsonProperty("seasons")]
+        public List<Season> Seasons { get; set; }
     }    
 }
