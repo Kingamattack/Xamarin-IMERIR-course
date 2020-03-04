@@ -7,14 +7,14 @@ using GalaSoft.MvvmLight.Ioc;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
-using tvshows.Models.Entities;
 using tvshows.Services;
 using tvshows.Services.Navigation;
+using tvshows.ViewModels.Views;
 
 using Xamarin.Forms;
 
@@ -46,17 +46,6 @@ namespace tvshows.ViewModels
             }
         }
 
-        public bool IsCastingVisible
-        {
-            get
-            {
-                if (Actors == null || !Actors.Any())
-                    return false;
-
-                return true;
-            }
-        }
-
         public Color StatusColor
         {
             get
@@ -68,9 +57,9 @@ namespace tvshows.ViewModels
             }
         }
 
-        public List<Actor> Actors => show?.Embedded?.Actors;
+        public CastingViewModel CastingViewModel { get; set; }
 
-        public List<Season> Seasons => show?.Embedded?.Seasons;
+        public List<Actor> Actors => show?.Embedded?.Actors;
 
         private Show show;
         public Show Show
@@ -81,27 +70,33 @@ namespace tvshows.ViewModels
                 Set(ref show, value);
 
                 if (show != null)
+                {
                     RefreshProperties();
+
+                    CastingViewModel.Actors = Actors;
+                }
             }
         }
 
+        public ICommand AppearingCommand { get; private set; }
         public ICommand OpenWebsiteCommand { get; private set; }
         public ICommand SaveToCollectionCommand { get; private set; }
-        public ICommand AppearingCommand { get; private set; }
 
+        private readonly IShowService showService;
         private readonly IFavoriteService favoriteService;
         private readonly INavigationService2 navigationService;
-        private readonly IShowService showService;
 
         public DetailViewModel()
         {
             OpenWebsiteCommand = new Command(OpenWebsite);
             SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
             AppearingCommand = new Command(async () => await Appearing());
+
+            showService = SimpleIoc.Default.GetInstance<IShowService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
-            showService = SimpleIoc.Default.GetInstance<IShowService>();
 
+            CastingViewModel = new CastingViewModel();
         }
 
         private async Task Appearing()
@@ -113,7 +108,7 @@ namespace tvshows.ViewModels
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.StackTrace);
             }            
         }
 
@@ -141,8 +136,6 @@ namespace tvshows.ViewModels
             RaisePropertyChanged(nameof(Summary));
             RaisePropertyChanged(nameof(StatusColor));
             RaisePropertyChanged(nameof(Actors));
-            RaisePropertyChanged(nameof(Seasons));
-            //RaisePropertyChanged(nameof(IsCastingVisible));
         }
     }    
 }

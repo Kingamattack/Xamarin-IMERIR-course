@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:tabView="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    xmlns:views="clr-namespace:tvshows.Views"
     Title="{Binding Show.Name}">
 
     <ContentPage.BindingContext>
@@ -30,8 +32,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="300" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -92,77 +92,24 @@
                     VerticalOptions="Start" />
             </StackLayout>
 
-            <!--  Casting  -->
-            <CollectionView
+            <!--  TabView  -->
+            <tabView:TabViewControl
                 Grid.Row="2"
-                Header="Casting"
-                HeightRequest="{Binding Actors.Count, Converter={StaticResource CollectionViewHeightConverter}}"
-                ItemsSource="{Binding Actors}">
-                <CollectionView.EmptyView>
-                    <Label Text="Casting non disponible" />
-                </CollectionView.EmptyView>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        HorizontalItemSpacing="5"
-                        Orientation="Vertical"
-                        Span="4"
-                        VerticalItemSpacing="5" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid BackgroundColor="Red" HeightRequest="150">
-                            <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
-                                <Label Text="{Binding Character.Name}" TextColor="Gray" />
-                                <Label Text="{Binding Person.Name}" TextColor="White" />
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                HeaderSelectionUnderlineColor="{StaticResource ThemeColor}"
+                HeaderTabTextColor="{StaticResource ThemeColor}">
+                <tabView:TabViewControl.ItemSource>
+                    <tabView:TabItem HeaderText="Casting">
+                        <views:CastingView BindingContext="{Binding CastingViewModel}" />
+                    </tabView:TabItem>
+                    <!--<tabView:TabItem HeaderText="Épisodes">
+                        <views:EpisodesView BindingContext="{Binding EpisodesViewModel}" />
+                    </tabView:TabItem>-->
+                </tabView:TabViewControl.ItemSource>
+            </tabView:TabViewControl>
 
-            <!--  Seasons  -->
-            <ListView
-                Grid.Row="3"
-                BackgroundColor="Blue"
-                Header="Saisons"
-                HeightRequest="{Binding Seasons.Count, Converter={StaticResource ListViewHeightConverter}}"
-                ItemsSource="{Binding Seasons}"
-                RowHeight="70"
-                SeparatorVisibility="None"
-                VerticalOptions="Start">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame
-                                Margin="0,5"
-                                Padding="10"
-                                BorderColor="Red"
-                                CornerRadius="10"
-                                HasShadow="True"
-                                IsClippedToBounds="True">
-                                <Grid VerticalOptions="CenterAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="20"
-                                        HorizontalOptions="Start"
-                                        Text="{Binding Number, StringFormat='Saison {0}'}" />
-                                    <Label
-                                        Grid.Column="1"
-                                        HorizontalOptions="End"
-                                        Text="{Binding EpisodeOrder, StringFormat='{0} épisodes'}" />
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <!--  Favorites  -->
             <Button
-                Grid.Row="4"
+                Grid.Row="3"
                 BackgroundColor="{StaticResource ThemeColor}"
                 Command="{Binding SaveToCollectionCommand}"
                 Text="Ajouter aux favoris"

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tvshows.Views.CastingView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <CollectionView Margin="0,10" ItemsSource="{Binding Actors}">
+        <CollectionView.EmptyView>
+            <Label Text="Casting non disponible" />
+        </CollectionView.EmptyView>
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                HorizontalItemSpacing="5"
+                Orientation="Vertical"
+                Span="4"
+                VerticalItemSpacing="5" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid BackgroundColor="Red" HeightRequest="150">
+                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
+                        <Label Text="{Binding Character.Name}" TextColor="Gray" />
+                        <Label Text="{Binding Person.Name}" TextColor="White" />
+                    </StackLayout>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>

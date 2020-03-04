@@ -1,8 +1,8 @@
-﻿using Foundation;
+﻿using CarouselView.FormsPlugin.iOS;
+
+using Foundation;
 
 using ImageCircle.Forms.Plugin.iOS;
-
-using SuaveControls.FloatingActionButton.iOS.Renderers;
 
 using UIKit;
 
@@ -24,7 +24,7 @@ namespace tvshows.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            //FloatingActionButtonRenderer.InitRenderer();
+            CarouselViewRenderer.Init();
             ImageCircleRenderer.Init();
             LoadApplication(new App());
 

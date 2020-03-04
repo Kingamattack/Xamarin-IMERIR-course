@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tvshows.Views.EpisodesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ListView
+        Header="Saisons"
+        ItemsSource="{Binding Episodes}"
+        RowHeight="70"
+        SeparatorVisibility="None"
+        VerticalOptions="Start">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame
+                        Margin="0,5"
+                        Padding="10"
+                        BorderColor="Red"
+                        CornerRadius="10"
+                        HasShadow="True"
+                        IsClippedToBounds="True">
+                        <Grid VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="Start"
+                                Text="Piotr" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Text="Piotr 2" />
+                        </Grid>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentView>

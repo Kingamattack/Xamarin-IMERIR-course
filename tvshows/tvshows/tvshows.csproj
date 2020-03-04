@@ -18,13 +18,15 @@
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
     <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
+    <PackageReference Include="Xam.Plugin.TabView" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Folder Include="Pages\" />
     <Folder Include="Themes\" />
     <Folder Include="Navigation\" />
     <Folder Include="DataTemplates\" />
     <Folder Include="Converters\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\SearchPage.xaml.cs">
