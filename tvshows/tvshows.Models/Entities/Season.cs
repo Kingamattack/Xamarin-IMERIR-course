@@ -4,8 +4,6 @@
 
 using Newtonsoft.Json;
 
-using System;
-
 namespace tvshows.Models.Entities
 {
     public class Season
@@ -20,6 +18,6 @@ namespace tvshows.Models.Entities
         public string Name { get; set; }
 
         [JsonProperty("episodeOrder")]
-        public long EpisodeOrder { get; set; }
+        public long? EpisodeOrder { get; set; }
     }
 }

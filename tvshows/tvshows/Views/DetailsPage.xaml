@@ -98,11 +98,14 @@
                 Header="Casting"
                 HeightRequest="{Binding Actors.Count, Converter={StaticResource CollectionViewHeightConverter}}"
                 ItemsSource="{Binding Actors}">
+                <CollectionView.EmptyView>
+                    <Label Text="Casting non disponible" />
+                </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         HorizontalItemSpacing="5"
                         Orientation="Vertical"
-                        Span="3"
+                        Span="4"
                         VerticalItemSpacing="5" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
@@ -161,6 +164,7 @@
             <Button
                 Grid.Row="4"
                 BackgroundColor="{StaticResource ThemeColor}"
+                Command="{Binding SaveToCollectionCommand}"
                 Text="Ajouter aux favoris"
                 TextColor="White"
                 VerticalOptions="End" />

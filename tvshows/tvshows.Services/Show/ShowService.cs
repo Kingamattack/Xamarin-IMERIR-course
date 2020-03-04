@@ -40,6 +40,7 @@ namespace tvshows.Services
                 {
                     string data = await response.Content.ReadAsStringAsync();
 
+                    Debug.Write(data);
                     show = JsonConvert.DeserializeObject<Show>(data);
                     Debug.Write(data);
                 }

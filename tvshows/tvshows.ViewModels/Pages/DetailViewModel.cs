@@ -4,10 +4,10 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,6 +15,7 @@ using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
 using tvshows.Services.Navigation;
+
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -45,6 +46,17 @@ namespace tvshows.ViewModels
             }
         }
 
+        public bool IsCastingVisible
+        {
+            get
+            {
+                if (Actors == null || !Actors.Any())
+                    return false;
+
+                return true;
+            }
+        }
+
         public Color StatusColor
         {
             get
@@ -67,10 +79,9 @@ namespace tvshows.ViewModels
             set
             {
                 Set(ref show, value);
-                RaisePropertyChanged(nameof(Summary));
-                RaisePropertyChanged(nameof(StatusColor));
-                RaisePropertyChanged(nameof(Actors));
-                RaisePropertyChanged(nameof(Seasons));
+
+                if (show != null)
+                    RefreshProperties();
             }
         }
 
@@ -85,7 +96,7 @@ namespace tvshows.ViewModels
         public DetailViewModel()
         {
             OpenWebsiteCommand = new Command(OpenWebsite);
-            //SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
+            SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
             AppearingCommand = new Command(async () => await Appearing());
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
@@ -98,6 +109,7 @@ namespace tvshows.ViewModels
             try
             {
                 Show = await showService.GetShow(show.Id);
+                
             }
             catch (Exception ex)
             {
@@ -110,18 +122,27 @@ namespace tvshows.ViewModels
             navigationService.NavigateTo("Website", Show.Url, true);
         }
 
-        //private void AddOrRemoveToCollection()
-        //{
-        //    if(favoriteService.Exists(show))
-        //    {
-        //        favoriteService.DeleteItem(show);
-        //    }
-        //    else
-        //    {
-        //        favoriteService.AddItem(show);
-        //    }
+        private void AddOrRemoveToCollection()
+        {
+            if (favoriteService.Exists(show))
+            {
+                favoriteService.DeleteItem(show);
+            }
+            else
+            {
+                favoriteService.AddItem(show);
+            }
 
-        //    RaisePropertyChanged(nameof(ButtonText));
-        //}
+            //RaisePropertyChanged(nameof(ButtonText));
+        }
+
+        private void RefreshProperties()
+        {
+            RaisePropertyChanged(nameof(Summary));
+            RaisePropertyChanged(nameof(StatusColor));
+            RaisePropertyChanged(nameof(Actors));
+            RaisePropertyChanged(nameof(Seasons));
+            //RaisePropertyChanged(nameof(IsCastingVisible));
+        }
     }    
 }
