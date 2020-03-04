@@ -39,7 +39,8 @@
             Grid.Row="1"
             ItemsSource="{Binding Shows}"
             RowHeight="100"
-            SelectedItem="{Binding SelectedShow, Mode=TwoWay}">
+            SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
+            SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

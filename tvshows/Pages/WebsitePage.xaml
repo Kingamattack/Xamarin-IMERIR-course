@@ -6,6 +6,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     ios:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource ThemeColor}"
     NavigationPage.HasNavigationBar="True">
     <ContentPage.BindingContext>
         <viewModels:WebsiteViewModel />
@@ -19,9 +20,10 @@
         <Button
             Margin="10"
             Command="{Binding ClosePageCommand}"
+            FontAttributes="Bold"
             HorizontalOptions="End"
             Text="Close"
-            TextColor="Black"
+            TextColor="White"
             VerticalOptions="Start" />
         <WebView Grid.Row="1" Source="{Binding Url}" />
     </Grid>
