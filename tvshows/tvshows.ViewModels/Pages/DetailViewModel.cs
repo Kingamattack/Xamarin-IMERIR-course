@@ -58,6 +58,8 @@ namespace tvshows.ViewModels
             }
         }
 
+        public int NumberEpisodes => Episodes?.Count ?? 0;
+
         public CastingViewModel CastingViewModel { get; set; }
         public EpisodesViewModel EpisodesViewModel { get; set; }
 
@@ -145,6 +147,7 @@ namespace tvshows.ViewModels
             RaisePropertyChanged(nameof(Actors));
             RaisePropertyChanged(nameof(Episodes));
             RaisePropertyChanged(nameof(IsButtonVisible));
+            RaisePropertyChanged(nameof(NumberEpisodes));
         }
     }    
 }

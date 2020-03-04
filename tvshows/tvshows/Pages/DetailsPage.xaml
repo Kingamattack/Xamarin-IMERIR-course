@@ -26,6 +26,11 @@
             IconImageSource="ic_web"
             Order="Primary"
             Priority="0" />
+        <ToolbarItem
+            Command="{Binding OpenWebsiteCommand}"
+            IconImageSource="ic_web"
+            Order="Primary"
+            Priority="1" />
     </ContentPage.ToolbarItems>
 
     <ScrollView Padding="10" VerticalScrollBarVisibility="Never">
@@ -34,25 +39,22 @@
                 <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="500" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--  Header  -->
-            <Grid BackgroundColor="Lime" HorizontalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Image
-                    Aspect="AspectFit"
-                    BackgroundColor="Blue"
+                    Aspect="AspectFill"
                     Source="{Binding Show.Image.Original}"
                     VerticalOptions="FillAndExpand" />
 
                 <StackLayout
                     Grid.Column="1"
-                    BackgroundColor="Yellow"
                     Orientation="Vertical"
                     VerticalOptions="FillAndExpand">
                     <Label
@@ -64,39 +66,44 @@
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Nombre d'épisode" />
-                    <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
+                        Text="Nombre d'épisodes" />
+                    <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
 
-                    <Label FontAttributes="Bold" Text="Note" />
-                    <!--<Label Text="{Binding Note}" />-->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Note" />
+                    <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
 
-                    <Label FontAttributes="Bold" Text="Status" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Status" />
                     <StackLayout Orientation="Horizontal">
                         <Frame
                             BackgroundColor="{Binding StatusColor}"
                             CornerRadius="5"
                             IsClippedToBounds="True" />
-                        <Label Text="{Binding Show.Status}" VerticalOptions="Center" />
+                        <Label
+                            Text="{Binding Show.Status}"
+                            TextColor="Gray"
+                            VerticalOptions="Center" />
                     </StackLayout>
                 </StackLayout>
             </Grid>
 
             <!--  Summary  -->
-            <StackLayout Grid.Row="1">
-                <Label
-                    FontSize="18"
-                    Text="Résumé"
-                    VerticalOptions="Start" />
-                <Label
-                    BackgroundColor="Yellow"
-                    Text="{Binding Summary}"
-                    TextType="Text"
-                    VerticalOptions="Start" />
-            </StackLayout>
+            <Label
+                Grid.Row="1"
+                Text="{Binding Summary}"
+                TextColor="Gray"
+                TextType="Text"
+                VerticalOptions="Start" />
 
             <!--  TabView  -->
             <tabView:TabViewControl
                 Grid.Row="2"
+                HeaderBackgroundColor="Transparent"
                 HeaderSelectionUnderlineColor="{StaticResource ThemeColor}"
                 HeaderTabTextColor="{StaticResource ThemeColor}">
                 <tabView:TabViewControl.ItemSource>
@@ -108,16 +115,6 @@
                     </tabView:TabItem>
                 </tabView:TabViewControl.ItemSource>
             </tabView:TabViewControl>
-
-            <!--  Favorites  -->
-            <Button
-                Grid.Row="3"
-                BackgroundColor="{StaticResource ThemeColor}"
-                Command="{Binding SaveToCollectionCommand}"
-                IsVisible="{Binding IsButtonVisible}"
-                Text="Ajouter aux favoris"
-                TextColor="White"
-                VerticalOptions="End" />
         </Grid>
     </ScrollView>
 </ContentPage>

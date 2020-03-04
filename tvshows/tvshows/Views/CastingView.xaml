@@ -4,25 +4,61 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <CollectionView Margin="0,10" ItemsSource="{Binding Actors}">
+    <CollectionView
+        Margin="0,10"
+        HorizontalScrollBarVisibility="Never"
+        ItemsSource="{Binding Actors}"
+        VerticalScrollBarVisibility="Never">
         <CollectionView.EmptyView>
             <Label Text="Casting non disponible" />
         </CollectionView.EmptyView>
         <CollectionView.ItemsLayout>
             <GridItemsLayout
-                HorizontalItemSpacing="5"
+                HorizontalItemSpacing="10"
                 Orientation="Vertical"
-                Span="4"
+                Span="3"
                 VerticalItemSpacing="5" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid BackgroundColor="Red" HeightRequest="150">
-                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
-                        <Label Text="{Binding Character.Name}" TextColor="Gray" />
-                        <Label Text="{Binding Person.Name}" TextColor="White" />
-                    </StackLayout>
-                </Grid>
+                <Frame
+                    Margin="0,5"
+                    Padding="0"
+                    CornerRadius="10"
+                    IsClippedToBounds="True">
+                    <Grid HeightRequest="150">
+                        <Image
+                            Aspect="AspectFill"
+                            Opacity="2.5"
+                            Source="{Binding Character.Image.Medium}" />
+                        <Label
+                            Padding="5"
+                            FontSize="14"
+                            TextColor="White"
+                            VerticalOptions="EndAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold" Text="{Binding Person.Name}" />
+                                    <Span FontAttributes="None" Text=" as " />
+                                    <Span FontAttributes="Bold" Text="{Binding Character.Name}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <!--<StackLayout
+                            Padding="5"
+                            Orientation="Vertical"
+                            VerticalOptions="EndAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="{Binding Character.Name}"
+                                TextColor="White" />
+                            <Label
+                                FontAttributes="Bold"
+                                Text="{Binding Person.Name}"
+                                TextColor="White" />
+                        </StackLayout>-->
+                    </Grid>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
