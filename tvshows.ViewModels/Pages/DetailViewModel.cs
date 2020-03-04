@@ -58,6 +58,17 @@ namespace tvshows.ViewModels
             }
         }
 
+        public ImageSource ToolbarItemIcon
+        {
+            get
+            {
+                if (Show == null || !favoriteService.Exists(Show))
+                    return ImageSource.FromFile("ic_star");
+
+                return ImageSource.FromFile("ic_star_filled");
+            }
+        }
+
         public int NumberEpisodes => Episodes?.Count ?? 0;
 
         public CastingViewModel CastingViewModel { get; set; }
@@ -112,18 +123,22 @@ namespace tvshows.ViewModels
         {
             try
             {
-                Show = await showService.GetShow(show.Id);
-                
+                if(!favoriteService.Exists(show))
+                {
+                    Show = await showService.GetShow(show.Id);
+                }
+
+                RaisePropertyChanged(nameof(ToolbarItemIcon));
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.StackTrace);
-            }            
+            }
         }
 
         private void OpenWebsite()
         {
-            navigationService.NavigateTo("Website", Show.Url, true);
+            navigationService.NavigateTo("Website", Show.OfficialSite, true);
         }
 
         private void AddOrRemoveToCollection()
@@ -137,7 +152,7 @@ namespace tvshows.ViewModels
                 favoriteService.AddItem(show);
             }
 
-            //RaisePropertyChanged(nameof(ButtonText));
+            RaisePropertyChanged(nameof(ToolbarItemIcon));
         }
 
         private void RefreshProperties()

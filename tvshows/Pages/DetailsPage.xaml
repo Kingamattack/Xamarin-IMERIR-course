@@ -27,8 +27,8 @@
             Order="Primary"
             Priority="0" />
         <ToolbarItem
-            Command="{Binding OpenWebsiteCommand}"
-            IconImageSource="ic_web"
+            Command="{Binding SaveToCollectionCommand}"
+            IconImageSource="{Binding ToolbarItemIcon}"
             Order="Primary"
             Priority="1" />
     </ContentPage.ToolbarItems>
@@ -60,7 +60,7 @@
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="1ere diffusion" />
+                        Text="1° diffusion" />
                     <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
 
                     <Label
@@ -73,7 +73,7 @@
                         FontAttributes="Bold"
                         FontSize="20"
                         Text="Note" />
-                    <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
+                    <Label Text="{Binding Show.Rating.Average, FallbackValue='-'}" TextColor="Gray" />
 
                     <Label
                         FontAttributes="Bold"

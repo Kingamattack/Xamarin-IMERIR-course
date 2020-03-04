@@ -37,7 +37,6 @@
 
         <ListView
             Grid.Row="1"
-            HasUnevenRows="False"
             ItemsSource="{Binding Shows}"
             RowHeight="100"
             SelectedItem="{Binding SelectedShow, Mode=TwoWay}">
@@ -48,7 +47,6 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
                             <circleImage:CircleImage
@@ -75,7 +73,7 @@
                                     TextColor="Black" />
                                 <Label
                                     Grid.Column="1"
-                                    Text="{Binding Runtime, StringFormat='{0} episodes'}"
+                                    Text="{Binding Runtime, StringFormat='{0} épisodes'}"
                                     TextColor="Gray" />
                                 <!--
                                     CollectionView that displays categories for each Show
@@ -83,9 +81,12 @@
                                 -->
                                 <CollectionView
                                     Grid.Column="1"
-                                    ItemsSource="{Binding Show.Genres}"
+                                    ItemsSource="{Binding Genres}"
                                     SelectionMode="None"
                                     VerticalOptions="CenterAndExpand">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout ItemSpacing="5" Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -97,11 +98,11 @@
                                                 -->
                                                 <Frame
                                                     Padding="0"
-                                                    BackgroundColor="{StaticResource ThemeColor}"
                                                     HasShadow="False"
                                                     IsClippedToBounds="True">
                                                     <Label
                                                         Padding="5"
+                                                        BackgroundColor="{StaticResource ThemeColor}"
                                                         FontAttributes="Bold"
                                                         Text="{Binding .}"
                                                         TextColor="White" />
@@ -109,22 +110,8 @@
                                             </Grid>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
                                 </CollectionView>
                             </StackLayout>
-                            <Image
-                                Grid.Column="2"
-                                Margin="0,0,20,0"
-                                HorizontalOptions="End"
-                                Source="ic_star" />
-                            <!--<Image
-                                Grid.Column="2"
-                                Margin="0,0,20,0"
-                                IsVisible="{}"
-                                HorizontalOptions="End"
-                                Source="ic_star_filled" />-->
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

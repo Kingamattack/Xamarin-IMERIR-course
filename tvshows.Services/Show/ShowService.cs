@@ -18,13 +18,13 @@ namespace tvshows.Services
     public class ShowService : IShowService
     {
         private readonly HttpClient httpClient;
-        private const string BaseUrl = "http://api.tvmaze.com";
+        private const string baseUrl = "http://api.tvmaze.com";
 
         public ShowService()
         {
             httpClient = new HttpClient()
             {
-                BaseAddress = new Uri(BaseUrl)
+                BaseAddress = new Uri(baseUrl)
             };
         }
 
@@ -42,7 +42,6 @@ namespace tvshows.Services
 
                     Debug.Write(data);
                     show = JsonConvert.DeserializeObject<Show>(data);
-                    Debug.Write(data);
                 }
 
                 return show;
@@ -66,6 +65,7 @@ namespace tvshows.Services
                 {
                     string data = await response.Content.ReadAsStringAsync();
 
+                    Debug.Write(data);
                     var jsonShows = JsonConvert.DeserializeObject<List<JsonShow>>(data);
 
                     foreach (var item in jsonShows)
