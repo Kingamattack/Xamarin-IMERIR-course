@@ -24,7 +24,6 @@
     <Folder Include="Themes\" />
     <Folder Include="Navigation\" />
     <Folder Include="DataTemplates\" />
-    <Folder Include="Converters\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

@@ -3,15 +3,10 @@
     x:Class="tvshows.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:tvshows.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Application.Resources>
-        <ResourceDictionary>
-            <converters:ListViewHeightConverter x:Key="ListViewHeightConverter" />
-            <converters:CollectionViewHeightConverter x:Key="CollectionViewHeightConverter" />
-            <Color x:Key="ThemeColor">#CB3416</Color>
-        </ResourceDictionary>
+        <ResourceDictionary Source="../Themes/Colors.xaml" />
     </Application.Resources>
 </Application>

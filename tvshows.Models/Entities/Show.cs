@@ -13,11 +13,11 @@ namespace tvshows.Models
     public class Show
     {
         public int Id { get; set; }
-        public string Url { get; set; }
+        public string OfficialSite { get; set; }
         public string Name { get; set; }
-        public string Language { get; set; }
-        public int? Runtime { get; set; }
+        public string Runtime { get; set; }
         public string Summary { get; set; }
+        public Rating Rating { get; set; }
         public string Status { get; set; }
         public string Premiered { get; set; }
         public Image Image { get; set; }
@@ -27,13 +27,15 @@ namespace tvshows.Models
         public Embedded Embedded { get; set; }
     }
 
+    public class Rating
+    {
+        public double? Average { get; set; }
+    }
+
     public class Embedded
     {
         [JsonProperty("cast")]
         public List<Actor> Actors { get; set; }
-
-        [JsonProperty("seasons")]
-        public List<Season> Seasons { get; set; }
 
         [JsonProperty("episodes")]
         public List<Episode> Episodes { get; set; }
