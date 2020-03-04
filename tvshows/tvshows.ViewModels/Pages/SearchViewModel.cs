@@ -19,6 +19,7 @@ using System.Windows.Input;
 using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
+using tvshows.Services.Navigation;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -61,7 +62,7 @@ namespace tvshows.ViewModels
             set => Set(ref isBusy, value);
         }
 
-        private readonly INavigationService navigationService;
+        private readonly INavigationService2 navigationService;
         private readonly IShowService showService;
 
         public ICommand SearchCommand { get; private set; }
@@ -71,7 +72,7 @@ namespace tvshows.ViewModels
             IsBusy = false;
             Text = string.Empty;
             Shows = new ObservableCollection<Show>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
             SearchCommand = new Command<string>(async (string query) => await Search(query));
         }
 

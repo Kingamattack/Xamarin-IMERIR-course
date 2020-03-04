@@ -134,7 +134,7 @@
                                 Margin="0,5"
                                 Padding="10"
                                 BorderColor="Red"
-                                CornerRadius="5"
+                                CornerRadius="10"
                                 HasShadow="True"
                                 IsClippedToBounds="True">
                                 <Grid VerticalOptions="CenterAndExpand">
@@ -160,8 +160,10 @@
             </ListView>
             <Button
                 Grid.Row="4"
-                Text="Coucou"
-                TextColor="Red" />
+                BackgroundColor="{StaticResource ThemeColor}"
+                Text="Ajouter aux favoris"
+                TextColor="White"
+                VerticalOptions="End" />
         </Grid>
     </ScrollView>
 </ContentPage>

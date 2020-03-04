@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Views;
 
 using tvshows.Navigation;
 using tvshows.Services;
+using tvshows.Services.Navigation;
 using tvshows.Views;
 
 using Xamarin.Forms;
@@ -21,7 +22,7 @@ namespace tvshows
             navigationService.Configure("Main", typeof(MainPage));
             navigationService.Configure("Website", typeof(WebsitePage));
 
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+            SimpleIoc.Default.Register<INavigationService2>(() => navigationService);
             SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
             SimpleIoc.Default.Register<IShowService, ShowService>();
 

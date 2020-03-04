@@ -3,10 +3,26 @@
     x:Class="tvshows.Views.WebsitePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels">
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="True">
     <ContentPage.BindingContext>
         <viewModels:WebsiteViewModel />
     </ContentPage.BindingContext>
 
-    <WebView Source="{Binding Url}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button
+            Margin="10"
+            Command="{Binding ClosePageCommand}"
+            HorizontalOptions="End"
+            Text="Close"
+            TextColor="Black"
+            VerticalOptions="Start" />
+        <WebView Grid.Row="1" Source="{Binding Url}" />
+    </Grid>
 </ContentPage>

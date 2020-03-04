@@ -2,18 +2,18 @@
 // Author: Jordy Kingama
 // Date: 26/1/2020
 
-using GalaSoft.MvvmLight.Views;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using tvshows.Services.Navigation;
+
 using Xamarin.Forms;
 
 namespace tvshows.Navigation
 {
-    public class NavigationService : INavigationService
+    public class NavigationService : INavigationService2
     {
         private NavigationPage _navigation;
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
@@ -34,9 +34,16 @@ namespace tvshows.Navigation
             }
         }
 
-        public void GoBack()
+        public void GoBack(bool isModal = false)
         {
-            _navigation.PopAsync();
+            if (isModal)
+            {
+                _navigation.Navigation.PopModalAsync();
+            }
+            else
+            {
+                _navigation.PopAsync();
+            }
         }
 
         public void NavigateTo(string pageKey)
@@ -44,7 +51,7 @@ namespace tvshows.Navigation
             NavigateTo(pageKey, null);
         }
 
-        public void NavigateTo(string pageKey, object parameter)
+        public void NavigateTo(string pageKey, object parameter, bool isModal = false)
         {
             lock (_pagesByKey)
             {
@@ -80,7 +87,14 @@ namespace tvshows.Navigation
                         throw new InvalidOperationException("No suitable constructor found for page " + pageKey);
 
                     var page = constructor.Invoke(parameters) as Page;
-                    _navigation.PushAsync(page);
+                    if (!isModal)
+                    {
+                        _navigation.Navigation.PushAsync(page);
+                    }
+                    else
+                    {
+                        _navigation.Navigation.PushModalAsync(page);
+                    }
                 }
                 else
                 {
@@ -91,7 +105,7 @@ namespace tvshows.Navigation
                         "pageKey");
                 }
             }
-        }
+        }            
 
         public void Configure(string pageKey, Type pageType)
         {

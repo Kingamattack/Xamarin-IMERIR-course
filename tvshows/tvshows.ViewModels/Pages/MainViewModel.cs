@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 using tvshows.Models;
 using tvshows.Services;
-
+using tvshows.Services.Navigation;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -65,7 +65,7 @@ namespace tvshows.ViewModels
         #region Services
 
         private readonly IFavoriteService favoriteService;
-        private readonly INavigationService navigationService;
+        private readonly INavigationService2 navigationService;
 
         #endregion        
 
@@ -80,7 +80,7 @@ namespace tvshows.ViewModels
             OpenShowDetailsCommand = new Command<Show>(OpenDetailsPage);
 
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
         }
 
         private void OpenSearchPage()

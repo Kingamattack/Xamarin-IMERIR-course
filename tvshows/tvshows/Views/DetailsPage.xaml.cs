@@ -2,6 +2,7 @@
 // Author: jordy
 // Date: 21/1/2020
 
+using System;
 using tvshows.Models;
 using tvshows.ViewModels;
 

@@ -14,7 +14,7 @@ using System.Windows.Input;
 using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
-
+using tvshows.Services.Navigation;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -79,7 +79,7 @@ namespace tvshows.ViewModels
         public ICommand AppearingCommand { get; private set; }
 
         private readonly IFavoriteService favoriteService;
-        private readonly INavigationService navigationService;
+        private readonly INavigationService2 navigationService;
         private readonly IShowService showService;
 
         public DetailViewModel()
@@ -88,7 +88,7 @@ namespace tvshows.ViewModels
             //SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
             AppearingCommand = new Command(async () => await Appearing());
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
             showService = SimpleIoc.Default.GetInstance<IShowService>();
 
         }
@@ -107,7 +107,7 @@ namespace tvshows.ViewModels
 
         private void OpenWebsite()
         {
-            navigationService.NavigateTo("Website");
+            navigationService.NavigateTo("Website", Show.Url, true);
         }
 
         //private void AddOrRemoveToCollection()
