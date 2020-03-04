@@ -4,7 +4,6 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 
 using Newtonsoft.Json;
 
@@ -20,6 +19,7 @@ using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
 using tvshows.Services.Navigation;
+
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels

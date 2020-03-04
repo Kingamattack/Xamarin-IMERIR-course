@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
+using tvshows.Models.Entities;
 using tvshows.Services;
 using tvshows.Services.Navigation;
 using tvshows.ViewModels.Views;
@@ -58,8 +59,12 @@ namespace tvshows.ViewModels
         }
 
         public CastingViewModel CastingViewModel { get; set; }
+        public EpisodesViewModel EpisodesViewModel { get; set; }
 
         public List<Actor> Actors => show?.Embedded?.Actors;
+        public List<Episode> Episodes => show?.Embedded?.Episodes;
+
+        public bool IsButtonVisible => !favoriteService.Exists(show);
 
         private Show show;
         public Show Show
@@ -74,6 +79,7 @@ namespace tvshows.ViewModels
                     RefreshProperties();
 
                     CastingViewModel.Actors = Actors;
+                    EpisodesViewModel.Episodes = Episodes;
                 }
             }
         }
@@ -97,6 +103,7 @@ namespace tvshows.ViewModels
             navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
 
             CastingViewModel = new CastingViewModel();
+            EpisodesViewModel = new EpisodesViewModel();
         }
 
         private async Task Appearing()
@@ -136,6 +143,8 @@ namespace tvshows.ViewModels
             RaisePropertyChanged(nameof(Summary));
             RaisePropertyChanged(nameof(StatusColor));
             RaisePropertyChanged(nameof(Actors));
+            RaisePropertyChanged(nameof(Episodes));
+            RaisePropertyChanged(nameof(IsButtonVisible));
         }
     }    
 }

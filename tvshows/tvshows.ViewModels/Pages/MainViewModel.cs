@@ -4,7 +4,6 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 
 using System;
 using System.Collections.Generic;
@@ -14,8 +13,10 @@ using System.Linq;
 using System.Windows.Input;
 
 using tvshows.Models;
+using tvshows.Models.Entities;
 using tvshows.Services;
 using tvshows.Services.Navigation;
+
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -48,8 +49,6 @@ namespace tvshows.ViewModels
                 OpenDetailsPage(value);
             }
         }
-
-        public bool IsAndroid => Device.RuntimePlatform == Device.Android;
 
         #endregion
 
@@ -131,16 +130,5 @@ namespace tvshows.ViewModels
         }
 
         #endregion
-    }
-}
-
-
-public class Showgroup : List<Show>
-{
-    public string Name { get; set; }
-
-    public Showgroup(string name, List<Show> shows) : base(shows)
-    {
-        Name = name;
     }
 }

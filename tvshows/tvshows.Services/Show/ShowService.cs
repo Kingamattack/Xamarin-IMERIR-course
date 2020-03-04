@@ -34,7 +34,7 @@ namespace tvshows.Services
 
             try
             {
-                var response = await httpClient.GetAsync($"/shows/{id}?embed[]=cast&embed[]=seasons");
+                var response = await httpClient.GetAsync($"/shows/{id}?embed[]=cast&embed[]=episodes");
 
                 if (response.IsSuccessStatusCode)
                 {

@@ -33,9 +33,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="500" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <!--  Header  -->
             <Grid BackgroundColor="Lime" HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -101,9 +103,9 @@
                     <tabView:TabItem HeaderText="Casting">
                         <views:CastingView BindingContext="{Binding CastingViewModel}" />
                     </tabView:TabItem>
-                    <!--<tabView:TabItem HeaderText="Épisodes">
+                    <tabView:TabItem HeaderText="Épisodes">
                         <views:EpisodesView BindingContext="{Binding EpisodesViewModel}" />
-                    </tabView:TabItem>-->
+                    </tabView:TabItem>
                 </tabView:TabViewControl.ItemSource>
             </tabView:TabViewControl>
 
@@ -112,6 +114,7 @@
                 Grid.Row="3"
                 BackgroundColor="{StaticResource ThemeColor}"
                 Command="{Binding SaveToCollectionCommand}"
+                IsVisible="{Binding IsButtonVisible}"
                 Text="Ajouter aux favoris"
                 TextColor="White"
                 VerticalOptions="End" />
