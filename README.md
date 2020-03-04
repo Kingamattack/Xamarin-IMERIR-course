@@ -1,3 +1,19 @@
+# Cours Xamarin.Forms pour les étudiants IMERIR (MAD)
+
+## Librairies
+- Xamarin.Essential: https://github.com/xamarin/Essentials
+- MvvmLight: https://github.com/lbugnion/mvvmlight
+- NewtonSoft: https://github.com/JamesNK/Newtonsoft.Json
+- Behaviors: https://github.com/davidbritch/behaviors
+- ImageCirclePlugin: https://github.com/jamesmontemagno/ImageCirclePlugin
+
+## Architecture
+- MVVM
+- IoC
+- Dependency Injection
+- PCL
+- DataBinding
+
 - Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
 - Mettre à jours les paquets
 - Design de la vue 
@@ -157,3 +173,5 @@ OnAppearing
 IoC -> DependencyService -> FavoriteService
 
 CollectionView aucune selection si SelectionMode not set to Single
+
+### Librairies
