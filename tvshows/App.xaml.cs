@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 
 using tvshows.Navigation;
 using tvshows.Services;
@@ -22,9 +21,14 @@ namespace tvshows
             navigationService.Configure("Main", typeof(MainPage));
             navigationService.Configure("Website", typeof(WebsitePage));
 
-            SimpleIoc.Default.Register<INavigationService2>(() => navigationService);
-            SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
-            SimpleIoc.Default.Register<IShowService, ShowService>();
+            if(!SimpleIoc.Default.IsRegistered<INavigationService2>())
+                SimpleIoc.Default.Register<INavigationService2>(() => navigationService);
+
+            if (!SimpleIoc.Default.IsRegistered<IFavoriteService>())
+                SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();
+
+            if (!SimpleIoc.Default.IsRegistered<IShowService>())
+                SimpleIoc.Default.Register<IShowService, ShowService>();
 
             var navigationPage = new NavigationPage(new MainPage())
             {

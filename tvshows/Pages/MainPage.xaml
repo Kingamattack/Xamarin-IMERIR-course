@@ -34,7 +34,8 @@
             RefreshColor="{StaticResource ThemeColor}">
             <CollectionView
                 IsGrouped="True"
-                ItemSizingStrategy="MeasureFirstItem"
+                ItemSizingStrategy="{OnPlatform iOS=MeasureFirstItem,
+                                                Android=MeasureAllItems}"
                 ItemsSource="{Binding Shows}"
                 SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
                 SelectionMode="Single"

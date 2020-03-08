@@ -56,8 +56,8 @@ namespace tvshows.ViewModels
 
         public ICommand GetShowsCommand { get; private set; }
         public ICommand AppearingCommand { get; private set; }
-        public ICommand OpenShowDetailsCommand { get; private set; }
         public ICommand OpenSearchCommand { get; private set; }
+        public ICommand OpenShowDetailsCommand { get; private set; }
 
         #endregion
 
@@ -99,6 +99,7 @@ namespace tvshows.ViewModels
             navigationService.NavigateTo("Details", show);
         }
 
+        // TODO: Explan this method, Linq
         private void GetShows()
         {
             try
@@ -106,10 +107,9 @@ namespace tvshows.ViewModels
                 IsBusy = true;
 
                 var shows = favoriteService.GetShows();
+                var group = shows.GroupBy(s => s.Name.First()).OrderBy(g => g.Key);
 
-                var group = shows.GroupBy(l => l.Name.First());
-
-                List<Showgroup> groups = new List<Showgroup>();
+                var groups = new List<Showgroup>();
 
                 foreach (var grp in group)
                 {

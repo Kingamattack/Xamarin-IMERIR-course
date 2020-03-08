@@ -7,6 +7,11 @@
 - Behaviors: https://github.com/davidbritch/behaviors
 - ImageCirclePlugin: https://github.com/jamesmontemagno/ImageCirclePlugin
 
+## Getting started
+### C#
+
+### Xamarin
+
 ## Architecture
 - MVVM
 - IoC
@@ -14,16 +19,22 @@
 - PCL
 - DataBinding
 
-- Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
-- Mettre à jours les paquets
-- Design de la vue 
-- Binding context -> this
-- Data Bidning 
+## Troubleshooting
 - Android clear htttp -> true (Research)
 https://medium.com/@son.rommer/fix-cleartext-traffic-error-in-android-9-pie-2f4e9e2235e6
 
 - iOS: The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
 https://forums.xamarin.com/discussion/99876/xamarin-ios-on-visual-studio-2017-requires-the-use-of-a-secure-connection
+
+- Change Android status bar color
+`Window.SetStatusBarColor(Color.ParseColor("#920000"));`
+
+
+- Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
+- Mettre à jours les paquets
+- Design de la vue 
+- Binding context -> this
+
 
 - Install MVVMLightLibs in all projects and inherits from ViewModelBase
 Define 2 properties for the Text and one for the list
@@ -70,7 +81,6 @@ public class JsonShow
 ```
 
 
-DataBinding
 
 Command 
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/button
@@ -174,4 +184,3 @@ IoC -> DependencyService -> FavoriteService
 
 CollectionView aucune selection si SelectionMode not set to Single
 
-### Librairies

@@ -95,6 +95,7 @@
             <!--  Summary  -->
             <Label
                 Grid.Row="1"
+                d:Text="coucou"
                 Text="{Binding Summary}"
                 TextColor="Gray"
                 TextType="Text"
