@@ -18,5 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\tvshows.Services\tvshows.Services.csproj" />
     <ProjectReference Include="..\tvshows.Models\tvshows.Models.csproj" />
+    <ProjectReference Include="..\tvshows.Strings\tvshows.Strings.csproj" />
   </ItemGroup>
 </Project>

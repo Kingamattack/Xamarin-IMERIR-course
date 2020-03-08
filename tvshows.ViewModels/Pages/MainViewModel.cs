@@ -15,7 +15,7 @@ using System.Windows.Input;
 using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
-
+using tvshows.Strings;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -79,6 +79,8 @@ namespace tvshows.ViewModels
 
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+
+            Debug.WriteLine(Localization.TestHere);
         }
 
         private void OpenSearchPage()
