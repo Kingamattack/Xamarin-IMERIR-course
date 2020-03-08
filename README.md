@@ -31,8 +31,14 @@ https://forums.xamarin.com/discussion/99876/xamarin-ios-on-visual-studio-2017-re
 `Window.SetStatusBarColor(Color.ParseColor("#920000"));`
 
 ## Useful links
+### Xamarin Forms documentation
 https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/
-
+### TVMaze API: 
+http://www.tvmaze.com/api
+#### Search a list of shows
+http://api.tvmaze.com/search/shows?q=girls
+#### Search a specific show
+http://api.tvmaze.com/shows/1
 
 
 - Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
