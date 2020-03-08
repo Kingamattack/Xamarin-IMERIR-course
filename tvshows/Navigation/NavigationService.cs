@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using tvshows.Services.Navigation;
+using tvshows.Services;
 
 using Xamarin.Forms;
 
 namespace tvshows.Navigation
 {
-    public class NavigationService : INavigationService2
+    public class NavigationService : INavigationService
     {
         private NavigationPage _navigation;
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();

@@ -5,20 +5,14 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-using Newtonsoft.Json;
-
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
-using tvshows.Models.Entities;
 using tvshows.Services;
-using tvshows.Services.Navigation;
 
 using Xamarin.Forms;
 
@@ -62,8 +56,8 @@ namespace tvshows.ViewModels
             set => Set(ref isBusy, value);
         }
 
-        private readonly INavigationService2 navigationService;
         private readonly IShowService showService;
+        private readonly INavigationService navigationService;
 
         public ICommand SearchCommand { get; private set; }
 
@@ -72,7 +66,10 @@ namespace tvshows.ViewModels
             IsBusy = false;
             Text = string.Empty;
             Shows = new ObservableCollection<Show>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
+
+            showService = SimpleIoc.Default.GetInstance<IShowService>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+
             SearchCommand = new Command<string>(async (string query) => await Search(query));
         }
 
@@ -84,26 +81,8 @@ namespace tvshows.ViewModels
 
                 if (query?.Length >= 3)
                 {
-                    var jsonShows = new List<JsonShow>();
-                    var httpClient = new HttpClient();
-
-                    var response = await httpClient.GetAsync($"http://api.tvmaze.com/search/shows?q={query}");
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string data = await response.Content.ReadAsStringAsync();
-
-                        jsonShows = JsonConvert.DeserializeObject<List<JsonShow>>(data);
-
-                        List<Show> s = new List<Show>();
-
-                        foreach (var item in jsonShows)
-                        {
-                            s.Add(item.Show);
-                        }
-
-                        Shows = new ObservableCollection<Show>(s);
-                    }
+                    var shows = await showService.GetShows(query);
+                    Shows = new ObservableCollection<Show>(shows);
                 }
             }
             catch (Exception e)

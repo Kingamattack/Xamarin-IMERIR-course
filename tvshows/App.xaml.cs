@@ -2,7 +2,6 @@
 
 using tvshows.Navigation;
 using tvshows.Services;
-using tvshows.Services.Navigation;
 using tvshows.Views;
 
 using Xamarin.Forms;
@@ -21,8 +20,8 @@ namespace tvshows
             navigationService.Configure("Main", typeof(MainPage));
             navigationService.Configure("Website", typeof(WebsitePage));
 
-            if(!SimpleIoc.Default.IsRegistered<INavigationService2>())
-                SimpleIoc.Default.Register<INavigationService2>(() => navigationService);
+            if(!SimpleIoc.Default.IsRegistered<INavigationService>())
+                SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
             if (!SimpleIoc.Default.IsRegistered<IFavoriteService>())
                 SimpleIoc.Default.Register<IFavoriteService, FavoriteService>();

@@ -2,9 +2,10 @@
 // Author: Jordy Kingama
 // Date: 4/3/2020
 
-namespace tvshows.Services.Navigation
+namespace tvshows.Services
 {
-    public interface INavigationService2
+    public interface INavigationService
+
     {
 		/// <summary>
 		/// The key corresponding to the currently displayed page.

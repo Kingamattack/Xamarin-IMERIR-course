@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 using System.Windows.Input;
 
-using tvshows.Services.Navigation;
+using tvshows.Services;
 
 using Xamarin.Forms;
 
@@ -24,12 +24,12 @@ namespace tvshows.ViewModels
 
         public ICommand ClosePageCommand { get; private set; }
 
-        private readonly INavigationService2 navigationService;
+        private readonly INavigationService navigationService;
 
         public WebsiteViewModel()
         {
             ClosePageCommand = new Command(ClosePage);
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
         }
 
         private void ClosePage()

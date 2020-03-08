@@ -14,7 +14,6 @@ using System.Windows.Input;
 using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
-using tvshows.Services.Navigation;
 using tvshows.ViewModels.Views;
 
 using Xamarin.Forms;
@@ -103,7 +102,7 @@ namespace tvshows.ViewModels
 
         private readonly IShowService showService;
         private readonly IFavoriteService favoriteService;
-        private readonly INavigationService2 navigationService;
+        private readonly INavigationService navigationService;
 
         public DetailViewModel()
         {
@@ -113,7 +112,7 @@ namespace tvshows.ViewModels
 
             showService = SimpleIoc.Default.GetInstance<IShowService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService2>();
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
 
             CastingViewModel = new CastingViewModel();
             EpisodesViewModel = new EpisodesViewModel();
