@@ -16,7 +16,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
-    <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
     <PackageReference Include="Xam.Plugin.TabView" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>

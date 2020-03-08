@@ -3,12 +3,12 @@
     x:Class="tvshows.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     Title="{x:Static resources:Localization.MainPageTitle}"
-    ios:Page.UseSafeArea="True">
+    ios:Page.UseSafeArea="True"
+    Appearing="OnAppearing">
 
     <ContentPage.BindingContext>
         <viewModels:MainViewModel />
@@ -21,12 +21,6 @@
             Order="Primary"
             Priority="0" />
     </ContentPage.ToolbarItems>
-
-    <ContentPage.Behaviors>
-        <behaviors:EventHandlerBehavior EventName="Appearing">
-            <behaviors:InvokeCommandAction Command="{Binding AppearingCommand}" />
-        </behaviors:EventHandlerBehavior>
-    </ContentPage.Behaviors>
 
     <Grid Margin="10">
         <RefreshView

@@ -76,8 +76,6 @@ namespace tvshows.ViewModels
         public List<Actor> Actors => show?.Embedded?.Actors;
         public List<Episode> Episodes => show?.Embedded?.Episodes;
 
-        public bool IsButtonVisible => !favoriteService.Exists(show);
-
         private Show show;
         public Show Show
         {
@@ -163,7 +161,6 @@ namespace tvshows.ViewModels
             RaisePropertyChanged(nameof(StatusColor));
             RaisePropertyChanged(nameof(Actors));
             RaisePropertyChanged(nameof(Episodes));
-            RaisePropertyChanged(nameof(IsButtonVisible));
             RaisePropertyChanged(nameof(NumberEpisodes));
         }
     }    

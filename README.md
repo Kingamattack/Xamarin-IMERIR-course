@@ -4,7 +4,6 @@
 - Xamarin.Essential: https://github.com/xamarin/Essentials
 - MvvmLight: https://github.com/lbugnion/mvvmlight
 - NewtonSoft: https://github.com/JamesNK/Newtonsoft.Json
-- Behaviors: https://github.com/davidbritch/behaviors
 - ImageCirclePlugin: https://github.com/jamesmontemagno/ImageCirclePlugin
 
 ## Getting started
@@ -34,6 +33,13 @@ Text="{x:Static resources:Localization.TestText}"
 string text = Localization.TestText
 ```
 
+#### Design data
+- Add the namespace in your XAML file
+```
+xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+
+d:Text="Here is my design text"
+```
 ## Architecture
 - MVVM
 - IoC
