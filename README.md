@@ -26,6 +26,7 @@
 ##### XAML
 ```
 xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
+
 Text="{x:Static resources:Localization.TestText}"
 ```
 ##### Code
