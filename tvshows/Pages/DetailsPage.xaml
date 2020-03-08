@@ -48,6 +48,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
+                <!--  Image  -->
                 <Image
                     Aspect="AspectFill"
                     Source="{Binding Show.Image.Original}"
@@ -57,33 +58,42 @@
                     Grid.Column="1"
                     Orientation="Vertical"
                     VerticalOptions="FillAndExpand">
+                    <!--  1° diffusion  -->
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="1° diffusion" />
+                        Text="1° diffusion"
+                        TextColor="Black" />
                     <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
 
+                    <!--  Nombre d'épisodes  -->
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Nombre d'épisodes" />
+                        Text="Nombre d'épisodes"
+                        TextColor="Black" />
                     <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
 
+                    <!--  Note  -->
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Note" />
+                        Text="Note"
+                        TextColor="Black" />
                     <Label Text="{Binding Show.Rating.Average, FallbackValue='-'}" TextColor="Gray" />
 
+                    <!--  Status  -->
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Status" />
+                        Text="Statut"
+                        TextColor="Black" />
                     <StackLayout Orientation="Horizontal">
-                        <Frame
-                            BackgroundColor="{Binding StatusColor}"
-                            CornerRadius="5"
-                            IsClippedToBounds="True" />
+                        <BoxView
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            WidthRequest="20"
+                            Color="{Binding StatusColor}" />
                         <Label
                             Text="{Binding Show.Status}"
                             TextColor="Gray"
@@ -95,7 +105,6 @@
             <!--  Summary  -->
             <Label
                 Grid.Row="1"
-                d:Text="coucou"
                 Text="{Binding Summary}"
                 TextColor="Gray"
                 TextType="Text"

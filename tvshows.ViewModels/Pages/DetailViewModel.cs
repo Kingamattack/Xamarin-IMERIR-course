@@ -137,7 +137,10 @@ namespace tvshows.ViewModels
 
         private void OpenWebsite()
         {
-            navigationService.NavigateTo("Website", Show.OfficialSite, true);
+            if(!string.IsNullOrEmpty(Show.OfficialSite))
+            {
+                navigationService.NavigateTo("Website", Show.OfficialSite, true);
+            }
         }
 
         private void AddOrRemoveToCollection()
