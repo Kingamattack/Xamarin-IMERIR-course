@@ -3,7 +3,6 @@
     x:Class="tvshows.Views.SearchPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:circleImage="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
@@ -50,16 +49,19 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <circleImage:CircleImage
+                            <Frame
                                 Margin="10,0"
-                                Aspect="AspectFill"
-                                BorderColor="{StaticResource ThemeColor}"
-                                BorderThickness="3"
+                                Padding="0"
+                                CornerRadius="40"
+                                HasShadow="False"
                                 HeightRequest="80"
                                 HorizontalOptions="CenterAndExpand"
-                                Source="{Binding Image.Original}"
+                                IsClippedToBounds="True"
                                 VerticalOptions="CenterAndExpand"
-                                WidthRequest="80" />
+                                WidthRequest="80">
+                                <Image Aspect="AspectFill" Source="{Binding Image.Original}" />
+                            </Frame>
+
                             <!--
                                 Add Margin to prevent bug on CollectionView
                             -->

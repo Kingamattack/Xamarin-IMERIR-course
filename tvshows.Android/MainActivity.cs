@@ -4,8 +4,6 @@ using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 
-using ImageCircle.Forms.Plugin.Droid;
-
 namespace tvshows.Droid
 {
     [Activity(
@@ -26,7 +24,6 @@ namespace tvshows.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Window.SetStatusBarColor(Color.ParseColor("#920000"));
-            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

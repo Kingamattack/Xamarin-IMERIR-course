@@ -2,8 +2,6 @@
 
 using Foundation;
 
-using ImageCircle.Forms.Plugin.iOS;
-
 using UIKit;
 
 namespace tvshows.iOS
@@ -25,7 +23,6 @@ namespace tvshows.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             CarouselViewRenderer.Init();
-            ImageCircleRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
