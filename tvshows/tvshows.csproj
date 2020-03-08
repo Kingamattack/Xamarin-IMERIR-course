@@ -35,4 +35,7 @@
     <ProjectReference Include="..\tvshows.ViewModels\tvshows.ViewModels.csproj" />
     <ProjectReference Include="..\tvshows.Services\tvshows.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\placeholder.png" />
+  </ItemGroup>
 </Project>

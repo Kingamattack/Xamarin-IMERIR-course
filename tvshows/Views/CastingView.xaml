@@ -35,7 +35,7 @@
                         <Image
                             Aspect="AspectFill"
                             Opacity="2.5"
-                            Source="{Binding Character.Image.Medium}" />
+                            Source="{Binding Character.Image.Medium, FallbackValue=placeholder}" />
                         <Label
                             Padding="5"
                             FontSize="14"

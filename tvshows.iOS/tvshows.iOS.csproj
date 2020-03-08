@@ -164,4 +164,7 @@
     <Folder Include="Assets.xcassets\ic_plus.imageset\" />
     <Folder Include="Assets.xcassets\ic_web.imageset\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placeholder.png" />
+  </ItemGroup>
 </Project>

@@ -17,7 +17,8 @@
 - IoC
 - Dependency Injection
 - PCL
-- DataBinding
+### Data Binding
+https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/data-binding/
 
 ## Troubleshooting
 - Android clear htttp -> true (Research)
@@ -29,6 +30,10 @@ https://forums.xamarin.com/discussion/99876/xamarin-ios-on-visual-studio-2017-re
 - Change Android status bar color
 `Window.SetStatusBarColor(Color.ParseColor("#920000"));`
 
+## Useful links
+https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/
+
+
 
 - Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
 - Mettre à jours les paquets
@@ -39,48 +44,6 @@ https://forums.xamarin.com/discussion/99876/xamarin-ios-on-visual-studio-2017-re
 - Install MVVMLightLibs in all projects and inherits from ViewModelBase
 Define 2 properties for the Text and one for the list
 - Set binding context from MainPage
-- 
-    <ContentPage.BindingContext>
-        <viewModels:MainViewModel />
-    </ContentPage.BindingContext>
-	
-- private string text;
-        public string Text
-        {
-            get => text;
-            set => Set(ref text, value);
-        }
-
-        private ObservableCollection<JsonShow> shows;
-        public ObservableCollection<JsonShow> Shows
-        {
-            get => shows;
-            set => Set(ref shows, value);
-        }
-		
-- 
-
-- Classe Show and JsonShow
-```
-public class Show
-{
-    public int Id { get; set; }
-    public string Url { get; set; }
-    public string Name { get; set; }
-    public string Language { get; set; }
-    public List<string> Genres { get; set; }
-}
-
-public class JsonShow
-{
-    public double Score { get; set; }
-    public Show Show { get; set; }
-}
-
-
-```
-
-
 
 Command 
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/button
@@ -145,10 +108,6 @@ SearchBar command
 Behaviors -> Select item
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/app-fundamentals/behaviors/reusable/event-to-command-behavior
 
-Runtime is nullabl
-
-android:TabbedPage.ToolbarPlacement="Bottom"
-
 Ajout du loader pour chargement des données
 ```
 <ActivityIndicator
@@ -160,20 +119,8 @@ Ajout du loader pour chargement des données
 	Color="{StaticResource ThemeColor}" />
 ```
 
-
 La comparaison de Show dans la couche service ne marche pas
-public void DeleteItem(Show show)
-        {
-            var deletedShow = shows.FirstOrDefault(s => s.Id == show.Id);
-            int index = shows.IndexOf(deletedShow);
-            shows.RemoveAt(index);
 
-            Save();
-        } 		
-xxxx
-
-
-xwx
 
 Large title
 
