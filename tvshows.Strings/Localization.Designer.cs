@@ -47,9 +47,9 @@ namespace tvshows.Strings {
             }
         }
         
-        public static string TestHere {
+        public static string MainPageTitle {
             get {
-                return ResourceManager.GetString("TestHere", resourceCulture);
+                return ResourceManager.GetString("MainPageTitle", resourceCulture);
             }
         }
     }
