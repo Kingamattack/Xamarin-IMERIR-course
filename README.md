@@ -11,6 +11,27 @@
 ### C#
 
 ### Xamarin
+#### Localization
+- Add a new .NET Standard Library project
+- Choose .NET Standard 2.1 and named it
+- Add a new Resource File (Localization.resx)
+- In properties, change Custom Tool to PublicResXFileCodeGenerator
+- In your main PCL, add a reference to you created project
+- In Localization.resx add values as below
+```
+<data name="TestText">
+	<value>Hello world.</value>
+</data>
+````
+##### XAML
+```
+xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
+Text="{x:Static resources:Localization.TestText}"
+```
+##### Code
+```
+string text = Localization.TestText
+```
 
 ## Architecture
 - MVVM
