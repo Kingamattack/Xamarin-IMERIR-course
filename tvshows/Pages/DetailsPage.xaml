@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.DetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tabView="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    xmlns:views="clr-namespace:tvshows.Views"
+    Title="{Binding Show.Name}"
+    Appearing="OnAppearing">
+
+    <ContentPage.BindingContext>
+        <viewModels:DetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding OpenWebsiteCommand}"
+            IconImageSource="ic_web"
+            Order="Primary"
+            Priority="0" />
+        <ToolbarItem
+            Command="{Binding SaveToCollectionCommand}"
+            IconImageSource="{Binding ToolbarItemIcon}"
+            Order="Primary"
+            Priority="1" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView Padding="10" VerticalScrollBarVisibility="Never">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="500" />
+            </Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  Image  -->
+                <Image
+                    Aspect="AspectFill"
+                    Source="{Binding Show.Image.Original}"
+                    VerticalOptions="FillAndExpand" />
+
+                <StackLayout
+                    Grid.Column="1"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+                    <!--  1° diffusion  -->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="1° diffusion"
+                        TextColor="Black" />
+                    <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
+
+                    <!--  Nombre d'épisodes  -->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Nombre d'épisodes"
+                        TextColor="Black" />
+                    <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
+
+                    <!--  Note  -->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Note"
+                        TextColor="Black" />
+                    <Label Text="{Binding Show.Rating.Average, FallbackValue='-'}" TextColor="Gray" />
+
+                    <!--  Status  -->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Statut"
+                        TextColor="Black" />
+                    <StackLayout Orientation="Horizontal">
+                        <BoxView
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            WidthRequest="20"
+                            Color="{Binding StatusColor}" />
+                        <Label
+                            Text="{Binding Show.Status}"
+                            TextColor="Gray"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+
+            <!--  Summary  -->
+            <Label
+                Grid.Row="1"
+                Text="{Binding Summary}"
+                TextColor="Gray"
+                TextType="Text"
+                VerticalOptions="Start" />
+
+            <!--  TabView  -->
+            <tabView:TabViewControl
+                Grid.Row="2"
+                HeaderBackgroundColor="Transparent"
+                HeaderSelectionUnderlineColor="{StaticResource ThemeColor}"
+                HeaderTabTextColor="{StaticResource ThemeColor}">
+                <tabView:TabViewControl.ItemSource>
+                    <tabView:TabItem HeaderText="Casting">
+                        <views:CastingView BindingContext="{Binding CastingViewModel}" />
+                    </tabView:TabItem>
+                    <tabView:TabItem HeaderText="Épisodes">
+                        <views:EpisodesView BindingContext="{Binding EpisodesViewModel}" />
+                    </tabView:TabItem>
+                </tabView:TabViewControl.ItemSource>
+            </tabView:TabViewControl>
+        </Grid>
+    </ScrollView>
+</ContentPage>

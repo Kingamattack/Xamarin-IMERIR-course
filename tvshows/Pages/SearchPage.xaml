@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:tvshows.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    Title="Recherche"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewModels:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <!--
+        Grid with 2 rows
+        Set the second row height to * in order to avoid
+        ListView to display empty cells
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--
+            SearchBar with SearchCommand and Text as parameter
+        -->
+        <SearchBar
+            x:Name="searchBar"
+            Placeholder="Rechercher..."
+            SearchCommand="{Binding SearchCommand}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding Shows}"
+            RowHeight="100"
+            SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:ShowCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
+            Color="{StaticResource ThemeColor}" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="tvshows.Views.ShowCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tvshows.Views">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Frame
+            Margin="10,0"
+            Padding="0"
+            CornerRadius="40"
+            HasShadow="False"
+            HeightRequest="80"
+            HorizontalOptions="CenterAndExpand"
+            IsClippedToBounds="True"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="80">
+            <Image Aspect="AspectFill" Source="{Binding Image.Original}" />
+        </Frame>
+
+        <!--
+            Add Margin to prevent bug on CollectionView
+        -->
+        <StackLayout
+            Grid.Column="1"
+            Margin="0,10"
+            Orientation="Vertical"
+            VerticalOptions="CenterAndExpand">
+            <Label
+                Grid.Column="1"
+                Text="{Binding Name}"
+                TextColor="Black" />
+            <Label
+                Grid.Column="1"
+                Text="{Binding Runtime, StringFormat='{0} épisodes'}"
+                TextColor="Gray" />
+            <!--
+                CollectionView that displays categories for each Show
+                Shouldn't be scrollable.
+            -->
+            <CollectionView
+                Grid.Column="1"
+                ItemsSource="{Binding Genres}"
+                SelectionMode="None"
+                VerticalOptions="CenterAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <local:GenreCell />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ViewCell>

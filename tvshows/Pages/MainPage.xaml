@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="tvshows.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
+    xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
+    Title="{x:Static resources:Localization.MainPageTitle}"
+    ios:Page.UseSafeArea="True"
+    Appearing="OnAppearing">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding OpenSearchCommand}"
+            IconImageSource="ic_plus"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Margin="10">
+        <RefreshView
+            Command="{Binding GetShowsCommand}"
+            IsRefreshing="{Binding IsBusy}"
+            RefreshColor="{StaticResource ThemeColor}">
+            <CollectionView
+                IsGrouped="True"
+                ItemSizingStrategy="{OnPlatform iOS=MeasureFirstItem,
+                                                Android=MeasureAllItems}"
+                ItemsSource="{Binding Shows}"
+                SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
+                SelectionMode="Single"
+                VerticalScrollBarVisibility="Never">
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Vous n'avez pas de séries dans votre collection"
+                            VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,10"
+                            Padding="0"
+                            CornerRadius="15"
+                            HasShadow="False"
+                            IsClippedToBounds="True">
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="150"
+                                Source="{Binding Image.Original}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="3"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding Name}"
+                            TextColor="{StaticResource ThemeColor}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

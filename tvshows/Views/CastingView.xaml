@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tvshows.Views.CastingView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tvshows.Views">
+
+    <CollectionView
+        Margin="0,10"
+        HorizontalScrollBarVisibility="Never"
+        ItemsSource="{Binding Actors}"
+        VerticalScrollBarVisibility="Never">
+        <CollectionView.EmptyView>
+            <Grid>
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Casting non disponible"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                HorizontalItemSpacing="10"
+                Orientation="Vertical"
+                Span="3"
+                VerticalItemSpacing="5" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <local:ActorCell />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>

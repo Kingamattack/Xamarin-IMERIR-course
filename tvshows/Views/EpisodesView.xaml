@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tvshows.Views.EpisodesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tvshows.Views">
+    <ListView
+        HasUnevenRows="False"
+        ItemsSource="{Binding Episodes}"
+        RowHeight="100"
+        SeparatorVisibility="None"
+        VerticalScrollBarVisibility="Never">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <local:EpisodeCell />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentView>
