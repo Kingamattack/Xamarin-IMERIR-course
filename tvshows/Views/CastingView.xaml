@@ -2,7 +2,8 @@
 <ContentView
     x:Class="tvshows.Views.CastingView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tvshows.Views">
 
     <CollectionView
         Margin="0,10"
@@ -26,31 +27,7 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame
-                    Margin="0,5"
-                    Padding="0"
-                    CornerRadius="10"
-                    IsClippedToBounds="True">
-                    <Grid HeightRequest="150">
-                        <Image
-                            Aspect="AspectFill"
-                            Opacity="2.5"
-                            Source="{Binding Character.Image.Medium, FallbackValue=placeholder}" />
-                        <Label
-                            Padding="5"
-                            FontSize="14"
-                            TextColor="White"
-                            VerticalOptions="EndAndExpand">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span FontAttributes="Bold" Text="{Binding Person.Name}" />
-                                    <Span FontAttributes="None" Text=" as " />
-                                    <Span FontAttributes="Bold" Text="{Binding Character.Name}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </Grid>
-                </Frame>
+                <local:ActorCell />
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

@@ -2,7 +2,8 @@
 <ContentView
     x:Class="tvshows.Views.EpisodesView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tvshows.Views">
     <ListView
         HasUnevenRows="False"
         ItemsSource="{Binding Episodes}"
@@ -11,40 +12,7 @@
         VerticalScrollBarVisibility="Never">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Frame
-                        Margin="0,5"
-                        Padding="0"
-                        BorderColor="{StaticResource ThemeColor}"
-                        CornerRadius="10"
-                        IsClippedToBounds="True">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.3*" />
-                                <ColumnDefinition Width="0.7*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Aspect="AspectFill" Source="{Binding Image.Medium}" />
-                            <StackLayout
-                                Grid.Column="1"
-                                Spacing="0"
-                                VerticalOptions="CenterAndExpand">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="20"
-                                    HorizontalOptions="Start">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Season, StringFormat='S{0}'}" />
-                                            <Span Text=" | " />
-                                            <Span Text="{Binding Number, StringFormat='E{0}'}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Text="{Binding Name}" TextColor="Gray" />
-                            </StackLayout>
-                        </Grid>
-                    </Frame>
-                </ViewCell>
+                <local:EpisodeCell />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

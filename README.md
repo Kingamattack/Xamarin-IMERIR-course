@@ -69,11 +69,6 @@ http://api.tvmaze.com/search/shows?q=girls
 http://api.tvmaze.com/shows/1
 
 
-- Création d'un projet Multiplatform -> Appp -> Blank Forms App -> App name -> Android/iOS / -> Use.NET Standard (not Shared Library)
-- Mettre à jours les paquets
-- Design de la vue 
-- Binding context -> this
-
 
 - Install MVVMLightLibs in all projects and inherits from ViewModelBase
 Define 2 properties for the Text and one for the list
@@ -93,10 +88,6 @@ https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/searchbar
 ListView
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/user-interface/listview/
 (Don't let listview to Auto in Grid if you set RowHeight)
-
-CollectionView
-
-
 
 
 Colors
@@ -134,5 +125,7 @@ SearchBar command
 Behaviors -> Select item
 https://docs.microsoft.com/fr-fr/xamarin/xamarin-forms/app-fundamentals/behaviors/reusable/event-to-command-behavior
 
-
-IoC -> DependencyService -> FavoriteService
+### TODO
+Custom Renderers
+DependencyService
+ItemTemplaceSelector
