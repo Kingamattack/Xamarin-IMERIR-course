@@ -47,9 +47,69 @@ namespace tvshows.Strings {
             }
         }
         
-        public static string MainPageTitle {
+        public static string CollectionPageTitle {
             get {
-                return ResourceManager.GetString("MainPageTitle", resourceCulture);
+                return ResourceManager.GetString("CollectionPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string CollectionPageEmptyStateMessage {
+            get {
+                return ResourceManager.GetString("CollectionPageEmptyStateMessage", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPagePremieredLabel {
+            get {
+                return ResourceManager.GetString("DetailsPagePremieredLabel", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageNumberOfEpisodesLabel {
+            get {
+                return ResourceManager.GetString("DetailsPageNumberOfEpisodesLabel", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageEpisodesLabel {
+            get {
+                return ResourceManager.GetString("DetailsPageEpisodesLabel", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageRateLabel {
+            get {
+                return ResourceManager.GetString("DetailsPageRateLabel", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageStatusLabel {
+            get {
+                return ResourceManager.GetString("DetailsPageStatusLabel", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageCastingHeader {
+            get {
+                return ResourceManager.GetString("DetailsPageCastingHeader", resourceCulture);
+            }
+        }
+        
+        public static string DetailsPageEpisodeHeader {
+            get {
+                return ResourceManager.GetString("DetailsPageEpisodeHeader", resourceCulture);
+            }
+        }
+        
+        public static string SearchPageTitle {
+            get {
+                return ResourceManager.GetString("SearchPageTitle", resourceCulture);
+            }
+        }
+        
+        public static string SearchPageResearchPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchPageResearchPlaceholder", resourceCulture);
             }
         }
     }

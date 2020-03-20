@@ -1,4 +1,4 @@
-﻿// File: MyCollectionViewModel.cs
+﻿// File: CollectionViewModel.cs
 // Author: Jordy Kingama
 // Date: 27/1/2020
 
@@ -20,7 +20,7 @@ using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class CollectionViewModel : ViewModelBase
     {
         #region Properties
 
@@ -67,7 +67,7 @@ namespace tvshows.ViewModels
 
         #endregion        
 
-        public MainViewModel()
+        public CollectionViewModel()
         {
             IsBusy = false;
             Shows = new ObservableCollection<Showgroup>();
@@ -79,12 +79,7 @@ namespace tvshows.ViewModels
 
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
-        }
-
-        private void OpenSearchPage()
-        {
-            navigationService.NavigateTo("Search");
-        }
+        }        
 
         #region Methods
 
@@ -98,7 +93,6 @@ namespace tvshows.ViewModels
             navigationService.NavigateTo("Details", show);
         }
 
-        // TODO: Explan this method, Linq
         private void GetShows()
         {
             try
@@ -122,12 +116,17 @@ namespace tvshows.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"{nameof(MainViewModel)}: {ex.StackTrace}");
+                Debug.WriteLine($"{nameof(CollectionViewModel)}: {ex.StackTrace}");
             }
             finally
             {
                 IsBusy = false;
             }
+        }
+
+        private void OpenSearchPage()
+        {
+            navigationService.NavigateTo("Search");
         }
 
         #endregion

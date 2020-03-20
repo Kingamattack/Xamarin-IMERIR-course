@@ -1,4 +1,4 @@
-﻿// File: MainPage.xaml.cs
+﻿// File: CollectionPage.xaml.cs
 // Author: Jordy Kingama
 // Date: 24/2/2020
 
@@ -10,16 +10,16 @@ using Xamarin.Forms;
 
 namespace tvshows.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class CollectionPage : ContentPage
     {
-        public MainPage()
+        public CollectionPage()
         {
             InitializeComponent();
         }
 
         private void OnAppearing(object sender, EventArgs e)
         {
-            ((MainViewModel)BindingContext).AppearingCommand.Execute(null);
+            ((CollectionViewModel)BindingContext).AppearingCommand.Execute(null);
         }
     }
 }

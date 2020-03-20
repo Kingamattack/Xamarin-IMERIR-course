@@ -3,6 +3,7 @@
     x:Class="tvshows.Views.DetailsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
     xmlns:tabView="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     xmlns:views="clr-namespace:tvshows.Views"
@@ -55,7 +56,7 @@
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="1° diffusion"
+                        Text="{x:Static resources:Localization.DetailsPagePremieredLabel}"
                         TextColor="Black" />
                     <Label Text="{Binding Show.Premiered}" TextColor="Gray" />
 
@@ -63,15 +64,23 @@
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Nombre d'épisodes"
+                        Text="{x:Static resources:Localization.DetailsPageNumberOfEpisodesLabel}"
                         TextColor="Black" />
-                    <Label Text="{Binding NumberEpisodes, StringFormat='{0} épisodes'}" TextColor="Gray" />
+                    <Label TextColor="Gray">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding NumberEpisodes}" />
+                                <Span Text=" " />
+                                <Span Text="{x:Static resources:Localization.DetailsPageEpisodesLabel}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                     <!--  Note  -->
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Note"
+                        Text="{x:Static resources:Localization.DetailsPageRateLabel}"
                         TextColor="Black" />
                     <Label Text="{Binding Show.Rating.Average, FallbackValue='-'}" TextColor="Gray" />
 
@@ -79,7 +88,7 @@
                     <Label
                         FontAttributes="Bold"
                         FontSize="20"
-                        Text="Statut"
+                        Text="{x:Static resources:Localization.DetailsPageStatusLabel}"
                         TextColor="Black" />
                     <StackLayout Orientation="Horizontal">
                         <BoxView
@@ -110,10 +119,10 @@
                 HeaderSelectionUnderlineColor="{StaticResource ThemeColor}"
                 HeaderTabTextColor="{StaticResource ThemeColor}">
                 <tabView:TabViewControl.ItemSource>
-                    <tabView:TabItem HeaderText="Casting">
+                    <tabView:TabItem HeaderText="{x:Static resources:Localization.DetailsPageCastingHeader}">
                         <views:CastingView BindingContext="{Binding CastingViewModel}" />
                     </tabView:TabItem>
-                    <tabView:TabItem HeaderText="Épisodes">
+                    <tabView:TabItem HeaderText="{x:Static resources:Localization.DetailsPageEpisodeHeader}">
                         <views:EpisodesView BindingContext="{Binding EpisodesViewModel}" />
                     </tabView:TabItem>
                 </tabView:TabViewControl.ItemSource>

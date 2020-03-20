@@ -12,7 +12,37 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="MainPageTitle">
-        <value>Ma collection</value>
+    <data name="CollectionPageTitle">
+        <value>My collection</value>
+    </data>
+    <data name="CollectionPageEmptyStateMessage">
+        <value>There is nothing in your collection.</value>
+    </data>
+    <data name="DetailsPagePremieredLabel">
+        <value>Premiered</value>
+    </data>
+    <data name="DetailsPageNumberOfEpisodesLabel">
+        <value>Number of episodes</value>
+    </data>
+    <data name="DetailsPageEpisodesLabel">
+        <value>episodes</value>
+    </data>
+    <data name="DetailsPageRateLabel">
+        <value>Rate</value>
+    </data>
+    <data name="DetailsPageStatusLabel">
+        <value>Status</value>
+    </data>
+    <data name="DetailsPageCastingHeader">
+        <value>Cast</value>
+    </data>
+    <data name="DetailsPageEpisodeHeader">
+        <value>Episodes</value>
+    </data>
+    <data name="SearchPageTitle">
+        <value>Search</value>
+    </data>
+    <data name="SearchPageResearchPlaceholder">
+        <value>Search a show...</value>
     </data>
 </root>

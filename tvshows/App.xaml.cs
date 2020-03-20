@@ -17,7 +17,7 @@ namespace tvshows
             var navigationService = new NavigationService();
             navigationService.Configure("Details", typeof(DetailsPage));
             navigationService.Configure("Search", typeof(SearchPage));
-            navigationService.Configure("Main", typeof(MainPage));
+            navigationService.Configure("Collection", typeof(CollectionPage));
             navigationService.Configure("Website", typeof(WebsitePage));
 
             if(!SimpleIoc.Default.IsRegistered<INavigationService>())
@@ -29,7 +29,7 @@ namespace tvshows
             if (!SimpleIoc.Default.IsRegistered<IShowService>())
                 SimpleIoc.Default.Register<IShowService, ShowService>();
 
-            var navigationPage = new NavigationPage(new MainPage())
+            var navigationPage = new NavigationPage(new CollectionPage())
             {
                 BarTextColor = Color.White,
                 BarBackgroundColor = (Color)Current.Resources["ThemeColor"]
