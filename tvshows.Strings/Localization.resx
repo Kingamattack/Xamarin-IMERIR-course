@@ -45,4 +45,7 @@
     <data name="SearchPageResearchPlaceholder">
         <value>Search a show...</value>
     </data>
+    <data name="CastingViewEmptyStateLabel">
+        <value>Cast not available</value>
+    </data>
 </root>

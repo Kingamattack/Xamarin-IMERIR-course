@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -70,8 +71,19 @@ namespace tvshows.ViewModels
 
         public int NumberEpisodes => Episodes?.Count ?? 0;
 
-        public CastingViewModel CastingViewModel { get; set; }
-        public EpisodesViewModel EpisodesViewModel { get; set; }
+        private CastingViewModel castingViewModel;
+        public CastingViewModel CastingViewModel
+        {
+            get => castingViewModel;
+            set => Set(ref castingViewModel, value);
+        }
+
+        private EpisodesViewModel episodesViewModel;
+        public EpisodesViewModel EpisodesViewModel
+        {
+            get => episodesViewModel;
+            set => Set(ref episodesViewModel, value);
+        }
 
         public List<Actor> Actors => show?.Embedded?.Actors;
         public List<Episode> Episodes => show?.Embedded?.Episodes;
@@ -88,8 +100,21 @@ namespace tvshows.ViewModels
                 {
                     RefreshProperties();
 
-                    CastingViewModel.Actors = Actors;
-                    EpisodesViewModel.Episodes = Episodes;
+                    if(Actors != null)
+                    {
+                        CastingViewModel = new CastingViewModel
+                        {
+                            Actors = new ObservableCollection<Actor>(Actors)
+                        };
+                    }
+
+                    if (Episodes != null)
+                    {
+                        EpisodesViewModel = new EpisodesViewModel
+                        {
+                            Episodes = new ObservableCollection<Episode>(Episodes)
+                        };
+                    }
                 }
             }
         }

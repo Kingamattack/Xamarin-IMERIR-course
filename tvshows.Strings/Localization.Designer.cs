@@ -112,5 +112,11 @@ namespace tvshows.Strings {
                 return ResourceManager.GetString("SearchPageResearchPlaceholder", resourceCulture);
             }
         }
+        
+        public static string CastingViewEmptyStateLabel {
+            get {
+                return ResourceManager.GetString("CastingViewEmptyStateLabel", resourceCulture);
+            }
+        }
     }
 }

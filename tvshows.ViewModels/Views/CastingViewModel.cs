@@ -4,7 +4,7 @@
 
 using GalaSoft.MvvmLight;
 
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using tvshows.Models;
 
@@ -12,8 +12,8 @@ namespace tvshows.ViewModels.Views
 {
     public class CastingViewModel : ViewModelBase
     {
-        private List<Actor> actors;
-        public List<Actor> Actors
+        private ObservableCollection<Actor> actors;
+        public ObservableCollection<Actor> Actors
         {
             get => actors;
             set => Set(ref actors, value);
