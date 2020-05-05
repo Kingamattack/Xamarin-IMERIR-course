@@ -3,11 +3,14 @@
     x:Class="tvshows.Views.DetailsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
     xmlns:tabView="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     xmlns:views="clr-namespace:tvshows.Views"
     Title="{Binding Show.Name}"
+    ios:Page.UseSafeArea="False"
     Appearing="OnAppearing">
 
     <ContentPage.BindingContext>
@@ -43,9 +46,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!--  Image  -->
-                <Image
+                <ffimageloading:CachedImage
                     Aspect="AspectFill"
-                    Source="{Binding Show.Image.Original}"
+                    Source="{Binding Show.Image.Medium}"
                     VerticalOptions="FillAndExpand" />
 
                 <StackLayout
@@ -114,6 +117,7 @@
 
             <!--  TabView  -->
             <tabView:TabViewControl
+                x:Name="test"
                 Grid.Row="2"
                 HeaderBackgroundColor="Transparent"
                 HeaderSelectionUnderlineColor="{StaticResource ThemeColor}"

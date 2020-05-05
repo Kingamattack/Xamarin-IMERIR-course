@@ -2,14 +2,15 @@
 <ContentView
     x:Class="tvshows.Views.ActorCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <Frame
         Margin="0,5"
         Padding="0"
         CornerRadius="10"
         IsClippedToBounds="True">
         <Grid HeightRequest="150">
-            <Image
+            <ffimageloading:CachedImage
                 Aspect="AspectFill"
                 Opacity="2.5"
                 Source="{Binding Character.Image.Medium, FallbackValue=placeholder}" />

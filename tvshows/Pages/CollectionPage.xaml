@@ -3,11 +3,12 @@
     x:Class="tvshows.Views.CollectionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     Title="{x:Static resources:Localization.CollectionPageTitle}"
-    ios:Page.UseSafeArea="True"
+    ios:Page.UseSafeArea="False"
     Appearing="OnAppearing">
 
     <ContentPage.BindingContext>
@@ -51,7 +52,7 @@
                             CornerRadius="15"
                             HasShadow="False"
                             IsClippedToBounds="True">
-                            <Image
+                            <ffimageloading:CachedImage
                                 Aspect="Fill"
                                 HeightRequest="150"
                                 Source="{Binding Image.Original}" />

@@ -16,6 +16,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Xam.Plugin.TabView" Version="1.0.4" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

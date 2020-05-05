@@ -3,6 +3,7 @@
     x:Class="tvshows.Views.ShowCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:local="clr-namespace:tvshows.Views">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +21,7 @@
             IsClippedToBounds="True"
             VerticalOptions="CenterAndExpand"
             WidthRequest="80">
-            <Image Aspect="AspectFill" Source="{Binding Image.Original}" />
+            <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding Image.Medium}" />
         </Frame>
 
         <!--
