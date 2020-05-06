@@ -18,7 +18,7 @@
 ![alt text](https://github.com/Kingamattack/Xamarin-IMERIR-course/blob/master/Screenshots/android_collection.png)
 
 ### Search
-![alt text](https://github.com/Kingamattack/Xamarin-IMERIR-course/blob/master/Screenshots/ios_searh.png)
+![alt text](https://github.com/Kingamattack/Xamarin-IMERIR-course/blob/master/Screenshots/ios_search.png)
 ![alt text](https://github.com/Kingamattack/Xamarin-IMERIR-course/blob/master/Screenshots/android_search.png)
 
 ### Show with cast and episodes
