@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace tvshows.Models.Entities
 {
-    public class Showgroup : List<ShowFavorite>
+    public class Showgroup : List<BaseShow>
     {
         public string Name { get; set; }
 
-        public Showgroup(string name, List<ShowFavorite> shows) : base(shows)
+        public Showgroup(string name, List<BaseShow> shows) : base(shows)
         {
             Name = name;
         }

@@ -10,12 +10,12 @@ namespace tvshows.Services
 {
     public interface IFavoriteService
     {
-        void AddItem(Show show);
+        void AddItem(BaseShow show);
 
-        void DeleteItem(Show show);
+        void DeleteItem(BaseShow show);
 
-        bool Exists(Show show);
+        bool Exists(BaseShow show);
 
-        List<Show> GetShows();
+        List<BaseShow> GetShows();
     }
 }

@@ -35,14 +35,14 @@ namespace tvshows.Droid
             showRefence.AddValueEventListener(new ValueEventListener());
         }
 
-        public void Save(ShowFavorite show)
+        public void Save(BaseShow show)
         {
             var dictionnary = GetDictionnaryFromObject(show);
             var reference = showRefence.Push();
             reference.SetValue(dictionnary);
         }
 
-        private HashMap GetDictionnaryFromObject(ShowFavorite show)
+        private HashMap GetDictionnaryFromObject(BaseShow show)
         {
             var map = new HashMap();
             map.Put(nameof(show.Id), show.Id);
@@ -61,28 +61,28 @@ namespace tvshows.Droid
         {
             if (snapshot.Exists())
             {
-                var shows = GetShowFavoriteFromDictionnary(snapshot);
+                var shows = GetBaseShowFromDictionnary(snapshot);
                 MessagingCenter.Send(shows, "GetShows");
             }
         }
 
-        private List<ShowFavorite> GetShowFavoriteFromDictionnary(DataSnapshot snapshot)
+        private List<BaseShow> GetBaseShowFromDictionnary(DataSnapshot snapshot)
         {
-            var showFavorites = new List<ShowFavorite>();
+            var baseShows = new List<BaseShow>();
 
             foreach (DataSnapshot snap in snapshot.Children.ToEnumerable())
             {
-                var show = new ShowFavorite
+                var show = new BaseShow
                 {
                     Id = (int)snap.Child("Id")?.GetValue(true),
                     Name = (string)snap.Child("Name")?.GetValue(true),
                     Image = (string)snap.Child("Image")?.GetValue(true)
                 };
 
-                showFavorites.Add(show);
+                baseShows.Add(show);
             }
 
-            return showFavorites;
+            return baseShows;
         }
     }
 }

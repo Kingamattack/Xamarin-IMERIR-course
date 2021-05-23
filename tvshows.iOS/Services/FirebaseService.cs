@@ -7,6 +7,8 @@ using Firebase.Database;
 
 using Foundation;
 
+using GalaSoft.MvvmLight.Ioc;
+
 using tvshows.iOS;
 using tvshows.Models;
 using tvshows.Services;
@@ -19,10 +21,12 @@ namespace tvshows.iOS
     public class FirebaseService : IFirebaseService
     {
         private readonly DatabaseReference showRefence;
+        private readonly IFavoriteService favoriteService;
         private readonly DatabaseReference databaseReference;
 
         public FirebaseService()
         {
+            favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             databaseReference = Database.DefaultInstance.GetRootReference();
             showRefence = databaseReference.GetChild("shows");
         }
@@ -34,20 +38,21 @@ namespace tvshows.iOS
                 if (snapshot.Exists)
                 {
                     var showsDictionnary = snapshot.GetValue() as NSDictionary;
-                    var shows = GetShowFavoriteFromDictionnary(showsDictionnary);
+                    var shows = GetBaseShowFromDictionnary(showsDictionnary);
 
                     MessagingCenter.Send(shows, "GetShows");
                 }
             });            
         }
 
-        public void Save(ShowFavorite show)
+        public void Save(BaseShow show)
         {
             var dictionnary = GetDictionnaryFromObject(show);
             showRefence.GetChildByAutoId().SetValue(dictionnary);
+            favoriteService.AddItem(show);
         }
 
-        private NSMutableDictionary<NSString, NSObject> GetDictionnaryFromObject(ShowFavorite show)
+        private NSMutableDictionary<NSString, NSObject> GetDictionnaryFromObject(BaseShow show)
         {
             var nsDictionnary = new NSMutableDictionary<NSString, NSObject>
             {
@@ -59,25 +64,25 @@ namespace tvshows.iOS
             return nsDictionnary;
         }
 
-        private List<ShowFavorite> GetShowFavoriteFromDictionnary(NSDictionary dictionnary)
+        private List<BaseShow> GetBaseShowFromDictionnary(NSDictionary dictionnary)
         {
-            var showFavorites = new List<ShowFavorite>();
+            var BaseShows = new List<BaseShow>();
 
             foreach (var entry in dictionnary)
             {
                 var dict = entry.Value as NSDictionary;
 
-                var show = new ShowFavorite
+                var show = new BaseShow
                 {
                     Id = ((NSNumber)dict["Id"]).Int32Value,
                     Name = (NSString)dict["Name"],
                     Image = (NSString)dict["Image"]
                 };
 
-                showFavorites.Add(show);
+                BaseShows.Add(show);
             }
 
-            return showFavorites;
+            return BaseShows;
         }
     }
 }

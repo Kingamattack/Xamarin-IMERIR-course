@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 
+using tvBaseShows.Services;
+
 using tvshows.Navigation;
 using tvshows.Services;
 using tvshows.Views;

@@ -13,11 +13,11 @@ namespace tvshows.Views
 {
     public partial class DetailsPage : ContentPage
     {
-        public DetailsPage(Show show)
-        {
+        public DetailsPage(BaseShow show)
+        {            
             InitializeComponent();
 
-            ((DetailViewModel)BindingContext).Show = show;
+            ((DetailViewModel)BindingContext).Show2 = show;
         }
 
         private void OnAppearing(object sender, EventArgs e)

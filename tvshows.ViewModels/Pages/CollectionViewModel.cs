@@ -38,8 +38,8 @@ namespace tvshows.ViewModels
             set => Set(ref isBusy, value);
         }
 
-        private Show selectedShow;
-        public Show SelectedShow
+        private BaseShow selectedShow;
+        public BaseShow SelectedShow
         {
             get => selectedShow;
             set
@@ -73,16 +73,16 @@ namespace tvshows.ViewModels
             IsBusy = false;
             Shows = new ObservableCollection<Showgroup>();
 
-            GetShowsCommand = new Command<List<ShowFavorite>>(GetShows);
+            GetShowsCommand = new Command<List<BaseShow>>(GetShows);
             AppearingCommand = new Command(Appearing);
             OpenSearchCommand = new Command(OpenSearchPage);
-            OpenShowDetailsCommand = new Command<Show>(OpenDetailsPage);
+            OpenShowDetailsCommand = new Command<BaseShow>(OpenDetailsPage);
 
             firebaseService = DependencyService.Get<IFirebaseService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();    
 
-            MessagingCenter.Subscribe<List<ShowFavorite>>(this, "GetShows", (shows) =>
+            MessagingCenter.Subscribe<List<BaseShow>>(this, "GetShows", (shows) =>
             {
                 GetShows(shows);
             });
@@ -96,12 +96,12 @@ namespace tvshows.ViewModels
             firebaseService.Get();
         }
 
-        private void OpenDetailsPage(Show show)
+        private void OpenDetailsPage(BaseShow show)
         {
             navigationService.NavigateTo("Details", show);
         }
 
-        private void GetShows(List<ShowFavorite> shows)
+        private void GetShows(List<BaseShow> shows)
         {
             try
             {

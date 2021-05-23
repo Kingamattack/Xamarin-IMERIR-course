@@ -88,6 +88,8 @@ namespace tvshows.ViewModels
         public List<Actor> Actors => show?.Embedded?.Actors;
         public List<Episode> Episodes => show?.Embedded?.Episodes;
 
+        public BaseShow Show2 { get; set; }
+
         private Show show;
         public Show Show
         {
@@ -147,12 +149,14 @@ namespace tvshows.ViewModels
         {
             try
             {
-                if(!favoriteService.Exists(show))
-                {
-                    Show = await showService.GetShow(show.Id);
-                }
+                Show = await showService.GetShow(Show2.Id);
 
-                RaisePropertyChanged(nameof(ToolbarItemIcon));
+                //if(!favoriteService.Exists(show))
+                //{
+                //    Show = await showService.GetShow(show.Id);
+                //}
+
+                //RaisePropertyChanged(nameof(ToolbarItemIcon));
             }
             catch (Exception ex)
             {
@@ -170,14 +174,14 @@ namespace tvshows.ViewModels
 
         private void AddOrRemoveToCollection()
         {
-            var showFavorite = new ShowFavorite
+            var BaseShow = new BaseShow
             {
                 Id = show.Id,
                 Name = show.Name,
                 Image = show.Image.Original
             };
 
-            firebaseService.Save(showFavorite);
+            firebaseService.Save(BaseShow);
             // firebaseService.Save(show);
             // firebaseService.
            

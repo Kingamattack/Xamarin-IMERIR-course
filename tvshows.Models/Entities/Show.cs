@@ -10,18 +10,14 @@ using tvshows.Models.Entities;
 
 namespace tvshows.Models
 {
-    public class Show
+    public class Show : BaseShow
     {
-        public int Id { get; set; }
         public string OfficialSite { get; set; }
-        public string Name { get; set; }
-        public string Runtime { get; set; }
         public string Summary { get; set; }
         public Rating Rating { get; set; }
         public string Status { get; set; }
         public string Premiered { get; set; }
         public Image Image { get; set; }
-        public List<string> Genres { get; set; }
 
         [JsonProperty("_embedded")]
         public Embedded Embedded { get; set; }

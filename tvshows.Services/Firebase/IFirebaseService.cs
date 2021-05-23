@@ -4,7 +4,7 @@ namespace tvshows.Services
 {
     public interface IFirebaseService
     {
-        void Save(ShowFavorite show);
+        void Save(BaseShow show);
 
         void Get();
     }

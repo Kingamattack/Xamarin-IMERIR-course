@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -27,15 +28,15 @@ namespace tvshows.ViewModels
             set => Set(ref text, value);
         }
 
-        private ObservableCollection<Show> shows;
-        public ObservableCollection<Show> Shows
+        private ObservableCollection<BaseShow> shows;
+        public ObservableCollection<BaseShow> Shows
         {
             get => shows;
             set => Set(ref shows, value);
         }
 
-        private Show selectedShow;
-        public Show SelectedShow
+        private BaseShow selectedShow;
+        public BaseShow SelectedShow
         {
             get => selectedShow;
             set
@@ -43,8 +44,7 @@ namespace tvshows.ViewModels
                 if(value != null)
                 {
                     Set(ref selectedShow, value);
-
-                    navigationService.NavigateTo("Details", selectedShow);
+                    navigationService.NavigateTo("Details", (BaseShow)selectedShow);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace tvshows.ViewModels
         {
             IsBusy = false;
             Text = string.Empty;
-            Shows = new ObservableCollection<Show>();
+            Shows = new ObservableCollection<BaseShow>();
 
             showService = SimpleIoc.Default.GetInstance<IShowService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
@@ -82,7 +82,16 @@ namespace tvshows.ViewModels
                 if (query?.Length >= 3)
                 {
                     var shows = await showService.GetShows(query);
-                    Shows = new ObservableCollection<Show>(shows);
+                    var BaseShowes = shows.Select(s => new BaseShow
+                    {
+                        Id = s.Id,
+                        Name = s.Name,
+                        Genres = s.Genres,
+                        Image = s.Image?.Original ?? "",
+                        Runtime = s.Runtime,
+                    });
+
+                    Shows = new ObservableCollection<BaseShow>(BaseShowes);
                 }
             }
             catch (Exception e)

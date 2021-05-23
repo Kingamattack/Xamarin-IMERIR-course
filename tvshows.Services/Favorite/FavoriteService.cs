@@ -8,55 +8,56 @@ using System.Collections.Generic;
 using System.Linq;
 
 using tvshows.Models;
+using tvshows.Services;
 
 using Xamarin.Essentials;
 
-namespace tvshows.Services
+namespace tvBaseShows.Services
 {
     public class FavoriteService : IFavoriteService
     {
-        private readonly List<Show> shows;
+        private readonly List<BaseShow> baseShows;
 
         public FavoriteService()
         {
-            string strCollection = Preferences.Get(nameof(shows), string.Empty);
+            string strCollection = Preferences.Get(nameof(baseShows), string.Empty);
 
             if (string.IsNullOrEmpty(strCollection))
             {
-                shows = new List<Show>();
+                baseShows = new List<BaseShow>();
             }
             else
             {
-                shows = JsonConvert.DeserializeObject<List<Show>>(strCollection);
+                baseShows = JsonConvert.DeserializeObject<List<BaseShow>>(strCollection);
             }
         }
 
-        public void AddItem(Show show)
+        public void AddItem(BaseShow BaseShow)
         {
-            shows.Add(show);
+            baseShows.Add(BaseShow);
 
             Save();
         }
 
-        public void DeleteItem(Show show)
+        public void DeleteItem(BaseShow BaseShow)
         {
-            var deletedShow = shows.FirstOrDefault(s => s.Id == show.Id);
-            int index = shows.IndexOf(deletedShow);
-            shows.RemoveAt(index);
+            var deletedBaseShow = baseShows.FirstOrDefault(s => s.Id == BaseShow.Id);
+            int index = baseShows.IndexOf(deletedBaseShow);
+            baseShows.RemoveAt(index);
 
             Save();
         }
 
-        public bool Exists(Show show)
+        public bool Exists(BaseShow BaseShow)
         {
-            if (show == null)
+            if (BaseShow == null)
                 return false;
 
             bool exists = false;
 
-            foreach (var entry in shows)
+            foreach (var entry in baseShows)
             {
-                if (entry.Id == show.Id)
+                if (entry.Id == BaseShow.Id)
                 {
                     exists = true;
                     return exists;
@@ -68,13 +69,13 @@ namespace tvshows.Services
 
         private void Save()
         {
-            string strCollection = JsonConvert.SerializeObject(shows);
-            Preferences.Set(nameof(shows), strCollection);
+            string strCollection = JsonConvert.SerializeObject(baseShows);
+            Preferences.Set(nameof(baseShows), strCollection);
         }
 
-        public List<Show> GetShows()
+        public List<BaseShow> GetShows()
         {
-            return shows;
+            return baseShows;
         }
     }
 }
