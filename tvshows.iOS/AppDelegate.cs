@@ -23,9 +23,9 @@ namespace tvshows.iOS
         {
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
-            CarouselViewRenderer.Init();
-            LoadApplication(new App());
             Firebase.Core.App.Configure();
+            CarouselViewRenderer.Init();
+            LoadApplication(new App());            
             return base.FinishedLaunching(app, options);
         }
     }

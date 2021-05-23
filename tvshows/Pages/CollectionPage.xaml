@@ -55,7 +55,7 @@
                             <ffimageloading:CachedImage
                                 Aspect="Fill"
                                 HeightRequest="150"
-                                Source="{Binding Image.Original}" />
+                                Source="{Binding Image}" />
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

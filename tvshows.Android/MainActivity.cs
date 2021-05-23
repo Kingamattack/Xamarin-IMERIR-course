@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
+using CarouselView.FormsPlugin.Android;
 
 namespace tvshows.Droid
 {
@@ -21,9 +22,11 @@ namespace tvshows.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Firebase.FirebaseApp.InitializeApp(ApplicationContext);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);            
+            CarouselViewRenderer.Init();
             Window.SetStatusBarColor(Color.ParseColor("#920000"));
             LoadApplication(new App());
         }

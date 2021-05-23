@@ -64,6 +64,7 @@ namespace tvshows.ViewModels
 
         private readonly IFavoriteService favoriteService;
         private readonly INavigationService navigationService;
+        private readonly IFirebaseService firebaseService;
 
         #endregion        
 
@@ -72,20 +73,27 @@ namespace tvshows.ViewModels
             IsBusy = false;
             Shows = new ObservableCollection<Showgroup>();
 
-            GetShowsCommand = new Command(GetShows);
+            GetShowsCommand = new Command<List<ShowFavorite>>(GetShows);
             AppearingCommand = new Command(Appearing);
             OpenSearchCommand = new Command(OpenSearchPage);
             OpenShowDetailsCommand = new Command<Show>(OpenDetailsPage);
 
+            firebaseService = DependencyService.Get<IFirebaseService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
-        }        
+            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();    
+
+            MessagingCenter.Subscribe<List<ShowFavorite>>(this, "GetShows", (shows) =>
+            {
+                GetShows(shows);
+            });
+        }
 
         #region Methods
 
         private void Appearing()
         {
-            GetShows();
+            IsBusy = true;
+            firebaseService.Get();
         }
 
         private void OpenDetailsPage(Show show)
@@ -93,13 +101,15 @@ namespace tvshows.ViewModels
             navigationService.NavigateTo("Details", show);
         }
 
-        private void GetShows()
+        private void GetShows(List<ShowFavorite> shows)
         {
             try
             {
-                IsBusy = true;
+                if (shows == null || !shows.Any())
+                {
+                    return;
+                }
 
-                var shows = favoriteService.GetShows();
                 var group = shows
                     .GroupBy(s => s.Name.First())
                     .OrderBy(g => g.Key);

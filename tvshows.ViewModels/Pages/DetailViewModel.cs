@@ -126,6 +126,7 @@ namespace tvshows.ViewModels
         private readonly IShowService showService;
         private readonly IFavoriteService favoriteService;
         private readonly INavigationService navigationService;
+        private readonly IFirebaseService firebaseService;
 
         public DetailViewModel()
         {
@@ -136,6 +137,7 @@ namespace tvshows.ViewModels
             showService = SimpleIoc.Default.GetInstance<IShowService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
             navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            firebaseService = DependencyService.Get<IFirebaseService>();
 
             CastingViewModel = new CastingViewModel();
             EpisodesViewModel = new EpisodesViewModel();

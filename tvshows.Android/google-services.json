@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "514666039468",
+    "firebase_url": "https://tvshows-c9af6-default-rtdb.firebaseio.com",
+    "project_id": "tvshows-c9af6",
+    "storage_bucket": "tvshows-c9af6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514666039468:android:f3ac0e95c850a5c4bdf709",
+        "android_client_info": {
+          "package_name": "com.kingamattack.tvshows"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514666039468-787qqo87pe8dbn3b91gc9dnf10pqv8cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHhCWQa4I6BaioXgBRU4Q2UTgiEmGYHOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514666039468-787qqo87pe8dbn3b91gc9dnf10pqv8cp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "514666039468-b01s8gfvtmkflel7nt5n0oui19m79nqg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kingamattack.tvshows"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
