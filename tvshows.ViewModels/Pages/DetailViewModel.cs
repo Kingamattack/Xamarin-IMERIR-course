@@ -170,14 +170,25 @@ namespace tvshows.ViewModels
 
         private void AddOrRemoveToCollection()
         {
-            if (favoriteService.Exists(show))
+            var showFavorite = new ShowFavorite
             {
-                favoriteService.DeleteItem(show);
-            }
-            else
-            {
-                favoriteService.AddItem(show);
-            }
+                Id = show.Id,
+                Name = show.Name,
+                Image = show.Image.Original
+            };
+
+            firebaseService.Save(showFavorite);
+            // firebaseService.Save(show);
+            // firebaseService.
+           
+            //if (favoriteService.Exists(show))
+            //{
+            //    favoriteService.DeleteItem(show);
+            //}
+            //else
+            //{
+            //    favoriteService.AddItem(show);
+            //}
 
             RaisePropertyChanged(nameof(ToolbarItemIcon));
         }
