@@ -11,6 +11,7 @@
     <Folder Include="Favorite\" />
     <Folder Include="Show\" />
     <Folder Include="Navigation\" />
+    <Folder Include="Firebase\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
