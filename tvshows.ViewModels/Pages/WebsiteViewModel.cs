@@ -3,16 +3,15 @@
 // Date: 2/3/2020
 
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
 
+using System.Threading.Tasks;
 using System.Windows.Input;
-
-using tvshows.Services;
 
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
+    [QueryProperty(nameof(Url), "url")]
     public class WebsiteViewModel : ViewModelBase
     {
         private string url;
@@ -24,17 +23,15 @@ namespace tvshows.ViewModels
 
         public ICommand ClosePageCommand { get; private set; }
 
-        private readonly INavigationService navigationService;
 
         public WebsiteViewModel()
         {
-            ClosePageCommand = new Command(ClosePage);
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+            ClosePageCommand = new Command(async () => await ClosePage());
         }
 
-        private void ClosePage()
+        private async Task ClosePage()
         {
-            navigationService.GoBack(true);
+            await Shell.Current.GoToAsync("..", true);
         }
     }
 }

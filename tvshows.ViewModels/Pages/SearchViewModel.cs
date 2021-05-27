@@ -44,7 +44,7 @@ namespace tvshows.ViewModels
                 if(value != null)
                 {
                     Set(ref selectedShow, value);
-                    navigationService.NavigateTo("Details", (BaseShow)selectedShow);
+                    GoToDetailsCommand.Execute(selectedShow);
                 }
             }
         }
@@ -57,9 +57,9 @@ namespace tvshows.ViewModels
         }
 
         private readonly IShowService showService;
-        private readonly INavigationService navigationService;
 
         public ICommand SearchCommand { get; private set; }
+        public ICommand GoToDetailsCommand { get; private set; }
 
         public SearchViewModel()
         {
@@ -68,9 +68,9 @@ namespace tvshows.ViewModels
             Shows = new ObservableCollection<BaseShow>();
 
             showService = SimpleIoc.Default.GetInstance<IShowService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
 
             SearchCommand = new Command<string>(async (string query) => await Search(query));
+            GoToDetailsCommand = new Command<BaseShow>(async (BaseShow show) => await GoToDetails(show));
         }
 
         private async Task Search(string query)
@@ -102,6 +102,11 @@ namespace tvshows.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private async Task GoToDetails(BaseShow show)
+        {
+            await Shell.Current.GoToAsync($"DetailsPage?show={show.Id}", true);
         }
     }
 }

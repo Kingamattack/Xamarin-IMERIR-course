@@ -8,7 +8,7 @@
     xmlns:resources="clr-namespace:tvshows.Strings;assembly=tvshows.Strings"
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     Title="{x:Static resources:Localization.CollectionPageTitle}"
-    ios:Page.UseSafeArea="False"
+    ios:Page.UseSafeArea="True"
     Appearing="OnAppearing">
 
     <ContentPage.BindingContext>

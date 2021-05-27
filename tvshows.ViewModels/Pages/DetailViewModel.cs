@@ -21,6 +21,7 @@ using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
+    [QueryProperty(nameof(SelectedShowId), "show")]
     public class DetailViewModel : ViewModelBase
     {
         public string Summary
@@ -88,7 +89,7 @@ namespace tvshows.ViewModels
         public List<Actor> Actors => show?.Embedded?.Actors;
         public List<Episode> Episodes => show?.Embedded?.Episodes;
 
-        public BaseShow Show2 { get; set; }
+        public string SelectedShowId { get; set; }
 
         private Show show;
         public Show Show
@@ -127,18 +128,16 @@ namespace tvshows.ViewModels
 
         private readonly IShowService showService;
         private readonly IFavoriteService favoriteService;
-        private readonly INavigationService navigationService;
         private readonly IFirebaseService firebaseService;
 
         public DetailViewModel()
         {
-            OpenWebsiteCommand = new Command(OpenWebsite);
+            OpenWebsiteCommand = new Command(async () => await OpenWebsite());
             SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
             AppearingCommand = new Command(async () => await Appearing());
 
             showService = SimpleIoc.Default.GetInstance<IShowService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
             firebaseService = DependencyService.Get<IFirebaseService>();
 
             CastingViewModel = new CastingViewModel();
@@ -149,7 +148,7 @@ namespace tvshows.ViewModels
         {
             try
             {
-                Show = await showService.GetShow(Show2.Id);
+                Show = await showService.GetShow(int.Parse(SelectedShowId));
 
                 //if(!favoriteService.Exists(show))
                 //{
@@ -164,11 +163,11 @@ namespace tvshows.ViewModels
             }
         }
 
-        private void OpenWebsite()
+        private async Task OpenWebsite()
         {
             if(!string.IsNullOrEmpty(Show.OfficialSite))
             {
-                navigationService.NavigateTo("Website", Show.OfficialSite, true);
+                await Shell.Current.GoToAsync($"WebsitePage?url={Show.OfficialSite}", true);
             }
         }
 

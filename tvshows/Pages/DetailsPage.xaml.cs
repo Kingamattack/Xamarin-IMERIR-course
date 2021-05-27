@@ -4,7 +4,6 @@
 
 using System;
 
-using tvshows.Models;
 using tvshows.ViewModels;
 
 using Xamarin.Forms;
@@ -13,11 +12,9 @@ namespace tvshows.Views
 {
     public partial class DetailsPage : ContentPage
     {
-        public DetailsPage(BaseShow show)
+        public DetailsPage()
         {            
             InitializeComponent();
-
-            ((DetailViewModel)BindingContext).Show2 = show;
         }
 
         private void OnAppearing(object sender, EventArgs e)

@@ -7,7 +7,8 @@
     xmlns:viewModels="clr-namespace:tvshows.ViewModels;assembly=tvshows.ViewModels"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource ThemeColor}"
-    NavigationPage.HasNavigationBar="True">
+    NavigationPage.HasNavigationBar="True"
+    Shell.PresentationMode="Modal">
     <ContentPage.BindingContext>
         <viewModels:WebsiteViewModel />
     </ContentPage.BindingContext>

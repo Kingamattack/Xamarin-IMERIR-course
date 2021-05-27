@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using tvshows.Models;
@@ -45,7 +46,7 @@ namespace tvshows.ViewModels
             set
             {
                 Set(ref selectedShow, value);
-                OpenDetailsPage(value);
+                OpenShowDetailsCommand.Execute(selectedShow);
             }
         }
 
@@ -63,7 +64,6 @@ namespace tvshows.ViewModels
         #region Services
 
         private readonly IFavoriteService favoriteService;
-        private readonly INavigationService navigationService;
         private readonly IFirebaseService firebaseService;
 
         #endregion        
@@ -75,12 +75,11 @@ namespace tvshows.ViewModels
 
             GetShowsCommand = new Command<List<BaseShow>>(GetShows);
             AppearingCommand = new Command(Appearing);
-            OpenSearchCommand = new Command(OpenSearchPage);
-            OpenShowDetailsCommand = new Command<BaseShow>(OpenDetailsPage);
+            OpenSearchCommand = new Command(async () => await OpenSearchPage());
+            OpenShowDetailsCommand = new Command<BaseShow>(async (show) => await OpenDetailsPage(show));
 
             firebaseService = DependencyService.Get<IFirebaseService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
-            navigationService = SimpleIoc.Default.GetInstance<INavigationService>();    
 
             MessagingCenter.Subscribe<List<BaseShow>>(this, "GetShows", (shows) =>
             {
@@ -96,9 +95,10 @@ namespace tvshows.ViewModels
             firebaseService.Get();
         }
 
-        private void OpenDetailsPage(BaseShow show)
+        private async Task OpenDetailsPage(BaseShow show)
         {
-            navigationService.NavigateTo("Details", show);
+            await Shell.Current.GoToAsync($"DetailsPage?show={show.Id}", true);
+
         }
 
         private void GetShows(List<BaseShow> shows)
@@ -134,9 +134,9 @@ namespace tvshows.ViewModels
             }
         }
 
-        private void OpenSearchPage()
+        private async Task OpenSearchPage()
         {
-            navigationService.NavigateTo("Search");
+            await Shell.Current.GoToAsync("SearchPage", true);
         }
 
         #endregion

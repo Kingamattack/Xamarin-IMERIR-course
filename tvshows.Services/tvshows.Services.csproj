@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Favorite\" />
     <Folder Include="Show\" />
-    <Folder Include="Navigation\" />
     <Folder Include="Firebase\" />
   </ItemGroup>
   <ItemGroup>

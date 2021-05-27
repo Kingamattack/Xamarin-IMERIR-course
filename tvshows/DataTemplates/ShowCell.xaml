@@ -21,7 +21,7 @@
             IsClippedToBounds="True"
             VerticalOptions="CenterAndExpand"
             WidthRequest="80">
-            <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding Image.Medium}" />
+            <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding Image}" />
         </Frame>
 
         <!--
