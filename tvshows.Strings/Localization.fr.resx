@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="CollectionPageTitle">
+        <value>Ma collection</value>
+    </data>
+    <data name="CollectionPageEmptyStateMessage">
+        <value>Il n'y a rien dans votre collection.</value>
+    </data>
+    <data name="DetailsPagePremieredLabel">
+        <value>Première diffusion</value>
+    </data>
+    <data name="DetailsPageNumberOfEpisodesLabel">
+        <value>Nombre d'épisodes</value>
+    </data>
+    <data name="DetailsPageEpisodesLabel">
+        <value>épisodes</value>
+    </data>
+    <data name="DetailsPageRateLabel">
+        <value>Note</value>
+    </data>
+    <data name="DetailsPageStatusLabel">
+        <value>Statut</value>
+    </data>
+    <data name="DetailsPageCastingHeader">
+        <value>Casting</value>
+    </data>
+    <data name="DetailsPageEpisodeHeader">
+        <value>Épisodes</value>
+    </data>
+    <data name="SearchPageTitle">
+        <value>Recherche</value>
+    </data>
+    <data name="SearchPageResearchPlaceholder">
+        <value>Rechercher une série...</value>
+    </data>
+    <data name="CastingViewEmptyStateLabel">
+        <value>Casting non disponible</value>
+    </data>
+    <data name="DetailAlertAddTitle">
+        <value>Ajout</value>
+    </data>
+    <data name="DetailAlertAddMessage">
+        <value>Série ajoutée à votre collection</value>
+    </data>
+    <data name="DetailAlertDeleteTitle">
+        <value>Suppression</value>
+    </data>
+    <data name="DetailAlertDeleteMessage">
+        <value>Série supprimée de votre collection</value>
+    </data>
+    <data name="DetailAlertOk">
+        <value>OK</value>
+    </data>
+</root>

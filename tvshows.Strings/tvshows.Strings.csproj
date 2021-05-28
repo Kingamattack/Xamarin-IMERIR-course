@@ -9,10 +9,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Localization.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Localization.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Localization.Designer.cs">
       <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Localization.fr.Designer.cs">
+      <DependentUpon>Localization.fr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

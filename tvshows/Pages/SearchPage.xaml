@@ -32,7 +32,8 @@
             ItemsSource="{Binding Shows}"
             RowHeight="100"
             SelectedItem="{Binding SelectedShow, Mode=TwoWay}"
-            SeparatorVisibility="None">
+            SeparatorVisibility="None"
+            VerticalScrollBarVisibility="Never">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ShowCell />

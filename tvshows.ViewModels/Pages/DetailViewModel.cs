@@ -2,7 +2,6 @@
 // Author: Jordy Kingama
 // Date: 26/1/2020
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using System;
@@ -15,6 +14,7 @@ using System.Windows.Input;
 using tvshows.Models;
 using tvshows.Models.Entities;
 using tvshows.Services;
+using tvshows.Strings;
 using tvshows.ViewModels.Views;
 
 using Xamarin.Forms;
@@ -22,7 +22,7 @@ using Xamarin.Forms;
 namespace tvshows.ViewModels
 {
     [QueryProperty(nameof(SelectedShowId), "show")]
-    public class DetailViewModel : ViewModelBase
+    public class DetailViewModel : BaseViewModel
     {
         public string Summary
         {
@@ -63,7 +63,7 @@ namespace tvshows.ViewModels
         {
             get
             {
-                if (Show == null || !favoriteService.Exists(Show))
+                if (Show == null || !favoriteService.Exists(Show.Id))
                     return ImageSource.FromFile("ic_star");
 
                 return ImageSource.FromFile("ic_star_filled");
@@ -133,7 +133,7 @@ namespace tvshows.ViewModels
         public DetailViewModel()
         {
             OpenWebsiteCommand = new Command(async () => await OpenWebsite());
-            SaveToCollectionCommand = new Command(AddOrRemoveToCollection);
+            SaveToCollectionCommand = new Command(async () => await AddOrRemoveToCollection());
             AppearingCommand = new Command(async () => await Appearing());
 
             showService = SimpleIoc.Default.GetInstance<IShowService>();
@@ -150,12 +150,7 @@ namespace tvshows.ViewModels
             {
                 Show = await showService.GetShow(int.Parse(SelectedShowId));
 
-                //if(!favoriteService.Exists(show))
-                //{
-                //    Show = await showService.GetShow(show.Id);
-                //}
-
-                //RaisePropertyChanged(nameof(ToolbarItemIcon));
+                RaisePropertyChanged(nameof(ToolbarItemIcon));
             }
             catch (Exception ex)
             {
@@ -171,27 +166,28 @@ namespace tvshows.ViewModels
             }
         }
 
-        private void AddOrRemoveToCollection()
+        private async Task AddOrRemoveToCollection()
         {
-            var BaseShow = new BaseShow
+            var baseShow = new BaseShow
             {
                 Id = show.Id,
                 Name = show.Name,
                 Image = show.Image.Original
             };
 
-            firebaseService.Save(BaseShow);
-            // firebaseService.Save(show);
-            // firebaseService.
-           
-            //if (favoriteService.Exists(show))
-            //{
-            //    favoriteService.DeleteItem(show);
-            //}
-            //else
-            //{
-            //    favoriteService.AddItem(show);
-            //}
+            // firebaseService.Save(baseShow);
+
+
+            if (favoriteService.Exists(baseShow.Id))
+            {
+                favoriteService.DeleteItem(baseShow.Id);
+                await Shell.Current.DisplayAlert(Localization.DetailAlertDeleteTitle, Localization.DetailAlertDeleteMessage, Localization.DetailAlertOk);
+            }
+            else
+            {
+                favoriteService.AddItem(baseShow.Id);
+                await Shell.Current.DisplayAlert(Localization.DetailAlertAddTitle, Localization.DetailAlertAddMessage, Localization.DetailAlertOk);
+            }
 
             RaisePropertyChanged(nameof(ToolbarItemIcon));
         }

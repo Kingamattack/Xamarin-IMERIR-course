@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
-using tvshows.Models;
 using tvshows.Services;
 
 using Xamarin.Essentials;
@@ -16,66 +15,50 @@ namespace tvBaseShows.Services
 {
     public class FavoriteService : IFavoriteService
     {
-        private readonly List<BaseShow> baseShows;
+        private readonly List<int> shows;
 
         public FavoriteService()
         {
-            string strCollection = Preferences.Get(nameof(baseShows), string.Empty);
+            shows = new List<int>();
 
-            if (string.IsNullOrEmpty(strCollection))
+            string strCollection = Preferences.Get(nameof(shows), string.Empty);
+
+            if (!string.IsNullOrEmpty(strCollection))
             {
-                baseShows = new List<BaseShow>();
-            }
-            else
-            {
-                baseShows = JsonConvert.DeserializeObject<List<BaseShow>>(strCollection);
+                shows = JsonConvert
+                    .DeserializeObject<List<int>>(strCollection)
+                    .Select(id => id)
+                    .ToList();
             }
         }
 
-        public void AddItem(BaseShow BaseShow)
+        public void AddItem(int id)
         {
-            baseShows.Add(BaseShow);
-
+            shows.Add(id);
             Save();
         }
 
-        public void DeleteItem(BaseShow BaseShow)
+        public void DeleteItem(int id)
         {
-            var deletedBaseShow = baseShows.FirstOrDefault(s => s.Id == BaseShow.Id);
-            int index = baseShows.IndexOf(deletedBaseShow);
-            baseShows.RemoveAt(index);
-
-            Save();
+            var deletedBaseShow = shows.FirstOrDefault(s => s == id);
+            int index = shows.IndexOf(deletedBaseShow);
+            shows.RemoveAt(index);
         }
 
-        public bool Exists(BaseShow BaseShow)
+        public bool Exists(int id)
         {
-            if (BaseShow == null)
-                return false;
+            return shows.Any(myId => myId == id);
+        }
 
-            bool exists = false;
-
-            foreach (var entry in baseShows)
-            {
-                if (entry.Id == BaseShow.Id)
-                {
-                    exists = true;
-                    return exists;
-                }
-            }
-
-            return exists;
+        public List<int> GetShowIds()
+        {
+            return shows;
         }
 
         private void Save()
         {
-            string strCollection = JsonConvert.SerializeObject(baseShows);
-            Preferences.Set(nameof(baseShows), strCollection);
-        }
-
-        public List<BaseShow> GetShows()
-        {
-            return baseShows;
-        }
+            string strCollection = JsonConvert.SerializeObject(shows);
+            Preferences.Set(nameof(shows), strCollection);
+        }        
     }
 }

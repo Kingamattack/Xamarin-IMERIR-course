@@ -2,7 +2,6 @@
 // Author: jordy
 // Date: 20/1/2020
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using System;
@@ -19,7 +18,7 @@ using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
-    public class SearchViewModel : ViewModelBase
+    public class SearchViewModel : BaseViewModel
     {
         private string text;
         public string Text
@@ -47,13 +46,6 @@ namespace tvshows.ViewModels
                     GoToDetailsCommand.Execute(selectedShow);
                 }
             }
-        }
-
-        private bool isBusy;
-        public bool IsBusy
-        {
-            get => isBusy;
-            set => Set(ref isBusy, value);
         }
 
         private readonly IShowService showService;

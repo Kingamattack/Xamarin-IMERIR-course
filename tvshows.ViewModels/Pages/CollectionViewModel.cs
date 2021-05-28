@@ -2,7 +2,6 @@
 // Author: Jordy Kingama
 // Date: 27/1/2020
 
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using System;
@@ -21,7 +20,7 @@ using Xamarin.Forms;
 
 namespace tvshows.ViewModels
 {
-    public class CollectionViewModel : ViewModelBase
+    public class CollectionViewModel : BaseViewModel
     {
         #region Properties
 
@@ -30,14 +29,7 @@ namespace tvshows.ViewModels
         {
             get => shows;
             set => Set(ref shows, value);
-        }
-
-        private bool isBusy;
-        public bool IsBusy
-        {
-            get => isBusy;
-            set => Set(ref isBusy, value);
-        }
+        }        
 
         private BaseShow selectedShow;
         public BaseShow SelectedShow
@@ -65,6 +57,7 @@ namespace tvshows.ViewModels
 
         private readonly IFavoriteService favoriteService;
         private readonly IFirebaseService firebaseService;
+        private readonly IShowService showService;
 
         #endregion        
 
@@ -73,15 +66,16 @@ namespace tvshows.ViewModels
             IsBusy = false;
             Shows = new ObservableCollection<Showgroup>();
 
-            GetShowsCommand = new Command<List<BaseShow>>(GetShows);
-            AppearingCommand = new Command(Appearing);
+            GetShowsCommand = new Command<List<Show>>(GetShows);
+            AppearingCommand = new Command(async () => await Appearing());
             OpenSearchCommand = new Command(async () => await OpenSearchPage());
-            OpenShowDetailsCommand = new Command<BaseShow>(async (show) => await OpenDetailsPage(show));
+            OpenShowDetailsCommand = new Command<Show>(async (show) => await OpenDetailsPage(show));
 
             firebaseService = DependencyService.Get<IFirebaseService>();
             favoriteService = SimpleIoc.Default.GetInstance<IFavoriteService>();
+            showService = SimpleIoc.Default.GetInstance<IShowService>();
 
-            MessagingCenter.Subscribe<List<BaseShow>>(this, "GetShows", (shows) =>
+            MessagingCenter.Subscribe<List<Show>>(this, "GetShows", (shows) =>
             {
                 GetShows(shows);
             });
@@ -89,19 +83,28 @@ namespace tvshows.ViewModels
 
         #region Methods
 
-        private void Appearing()
+        private async Task Appearing()
         {
             IsBusy = true;
-            firebaseService.Get();
+            var myShows = new List<Show>();
+            var ids = favoriteService.GetShowIds();
+
+            foreach (int id in ids)
+            {
+                var _show = await showService.GetShow(id);
+                myShows.Add(_show);
+            }
+
+            GetShows(myShows);
         }
 
-        private async Task OpenDetailsPage(BaseShow show)
+        private async Task OpenDetailsPage(Show show)
         {
             await Shell.Current.GoToAsync($"DetailsPage?show={show.Id}", true);
 
         }
 
-        private void GetShows(List<BaseShow> shows)
+        private void GetShows(List<Show> shows)
         {
             try
             {

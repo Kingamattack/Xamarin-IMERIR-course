@@ -4,18 +4,16 @@
 
 using System.Collections.Generic;
 
-using tvshows.Models;
-
 namespace tvshows.Services
 {
     public interface IFavoriteService
     {
-        void AddItem(BaseShow show);
+        void AddItem(int id);
 
-        void DeleteItem(BaseShow show);
+        void DeleteItem(int id);
 
-        bool Exists(BaseShow show);
+        bool Exists(int id);
 
-        List<BaseShow> GetShows();
+        List<int> GetShowIds();
     }
 }

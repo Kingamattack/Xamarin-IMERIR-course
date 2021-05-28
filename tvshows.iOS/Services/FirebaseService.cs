@@ -49,7 +49,7 @@ namespace tvshows.iOS
         {
             var dictionnary = GetDictionnaryFromObject(show);
             showRefence.GetChildByAutoId().SetValue(dictionnary);
-            favoriteService.AddItem(show);
+            // favoriteService.AddItem(show);
         }
 
         private NSMutableDictionary<NSString, NSObject> GetDictionnaryFromObject(BaseShow show)

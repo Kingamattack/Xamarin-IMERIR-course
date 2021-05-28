@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="CollectionPageTitle">
-        <value>Collection</value>
+        <value>My collection</value>
     </data>
     <data name="CollectionPageEmptyStateMessage">
         <value>There is nothing in your collection.</value>
@@ -47,5 +47,20 @@
     </data>
     <data name="CastingViewEmptyStateLabel">
         <value>Cast not available</value>
+    </data>
+    <data name="DetailAlertAddTitle">
+        <value>Add</value>
+    </data>
+    <data name="DetailAlertAddMessage">
+        <value>Show added to your collection</value>
+    </data>
+    <data name="DetailAlertDeleteTitle">
+        <value>Deletion</value>
+    </data>
+    <data name="DetailAlertDeleteMessage">
+        <value>Show removed from your collection</value>
+    </data>
+    <data name="DetailAlertOk">
+        <value>OK</value>
     </data>
 </root>

@@ -2,8 +2,6 @@
 // Author: Jordy Kingama
 // Date: 2/3/2020
 
-using GalaSoft.MvvmLight;
-
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,7 +10,7 @@ using Xamarin.Forms;
 namespace tvshows.ViewModels
 {
     [QueryProperty(nameof(Url), "url")]
-    public class WebsiteViewModel : ViewModelBase
+    public class WebsiteViewModel : BaseViewModel
     {
         private string url;
         public string Url
