@@ -34,7 +34,6 @@ namespace tvshows
             Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
             Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
             Routing.RegisterRoute(nameof(CollectionPage), typeof(CollectionPage));
-            Routing.RegisterRoute(nameof(WebsitePage), typeof(WebsitePage));
         }
     }
 }

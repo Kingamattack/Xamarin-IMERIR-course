@@ -40,9 +40,11 @@ namespace tvBaseShows.Services
 
         public void DeleteItem(int id)
         {
-            var deletedBaseShow = shows.FirstOrDefault(s => s == id);
-            int index = shows.IndexOf(deletedBaseShow);
+            var deletedShow = shows.FirstOrDefault(s => s == id);
+            int index = shows.IndexOf(deletedShow);
             shows.RemoveAt(index);
+
+            Save();
         }
 
         public bool Exists(int id)

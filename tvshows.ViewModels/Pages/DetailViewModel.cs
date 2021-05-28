@@ -17,6 +17,7 @@ using tvshows.Services;
 using tvshows.Strings;
 using tvshows.ViewModels.Views;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace tvshows.ViewModels
@@ -162,7 +163,7 @@ namespace tvshows.ViewModels
         {
             if(!string.IsNullOrEmpty(Show.OfficialSite))
             {
-                await Shell.Current.GoToAsync($"WebsitePage?url={Show.OfficialSite}", true);
+                await Browser.OpenAsync(Show.OfficialSite);
             }
         }
 
