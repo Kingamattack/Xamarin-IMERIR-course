@@ -1,4 +1,4 @@
-# Xamarin.Forms course for IMERIR "MAD" students
+# Xamarin.Forms course for IMERIR students
 
 ## Libraries
 - Xamarin.Essential: https://github.com/xamarin/Essentials
@@ -6,6 +6,7 @@
 - NewtonSoft: https://github.com/JamesNK/Newtonsoft.Json
 - FFImageLoading: https://github.com/luberda-molinet/FFImageLoading
 - TabView: https://github.com/chaosifier/TabView
+- Firebase: https://github.com/xamarin/GoogleApisForiOSComponents
 
 ## API
 - TVMaze: http://www.tvmaze.com/api
